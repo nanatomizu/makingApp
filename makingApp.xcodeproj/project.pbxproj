@@ -7,23 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3321CA87CD00594B68 /* calenderViewController.swift */; };
+		514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3521CA8ECC00594B68 /* settingViewController.swift */; };
+		514A7B3821CA944F00594B68 /* settingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */; };
+		514A7B3A21CA9BF100594B68 /* quotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3921CA9BF100594B68 /* quotationViewController.swift */; };
+		514A7B3C21CAA12900594B68 /* myPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3B21CAA12900594B68 /* myPageViewController.swift */; };
 		51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FE821C8CBB2007D6462 /* AppDelegate.swift */; };
 		51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEA21C8CBB2007D6462 /* ViewController.swift */; };
-		51B32FEE21C8CBB2007D6462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51B32FEC21C8CBB2007D6462 /* Main.storyboard */; };
 		51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEF21C8CBB2007D6462 /* makingApp.xcdatamodeld */; };
 		51B32FF321C8CBB5007D6462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B32FF221C8CBB5007D6462 /* Assets.xcassets */; };
 		51B32FF621C8CBB5007D6462 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51B32FF421C8CBB5007D6462 /* LaunchScreen.storyboard */; };
+		51C8045A21CA3097005D71E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C8045921CA3097005D71E9 /* Main.storyboard */; };
+		51C8046A21CA5ECD005D71E9 /* meigen.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8046921CA5ECD005D71E9 /* meigen.png */; };
+		51C8047221CA605D005D71E9 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047121CA605D005D71E9 /* home.png */; };
+		51C8047621CA613F005D71E9 /* myPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047521CA613F005D71E9 /* myPage.png */; };
+		51C8047A21CA61D5005D71E9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047921CA61D4005D71E9 /* setting.png */; };
+		51C8047E21CA66F5005D71E9 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047D21CA66F5005D71E9 /* record.png */; };
+		7B039FC6D07707F208F3E0DA /* Pods_makingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		514A7B3321CA87CD00594B68 /* calenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calenderViewController.swift; sourceTree = "<group>"; };
+		514A7B3521CA8ECC00594B68 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
+		514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingDetailsViewController.swift; sourceTree = "<group>"; };
+		514A7B3921CA9BF100594B68 /* quotationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quotationViewController.swift; sourceTree = "<group>"; };
+		514A7B3B21CAA12900594B68 /* myPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPageViewController.swift; sourceTree = "<group>"; };
 		51B32FE521C8CBB2007D6462 /* makingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B32FE821C8CBB2007D6462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51B32FEA21C8CBB2007D6462 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		51B32FED21C8CBB2007D6462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51B32FF021C8CBB2007D6462 /* makingApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = makingApp.xcdatamodel; sourceTree = "<group>"; };
 		51B32FF221C8CBB5007D6462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51B32FF521C8CBB5007D6462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51B32FF721C8CBB5007D6462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51C8045921CA3097005D71E9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		51C8046921CA5ECD005D71E9 /* meigen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meigen.png; sourceTree = "<group>"; };
+		51C8047121CA605D005D71E9 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		51C8047521CA613F005D71E9 /* myPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myPage.png; sourceTree = "<group>"; };
+		51C8047921CA61D4005D71E9 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		51C8047D21CA66F5005D71E9 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
+		8AE4EEB948E3577F0B395AFC /* Pods-makingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-makingApp/Pods-makingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BAAFC85185C9D06A06685C6C /* Pods-makingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-makingApp/Pods-makingApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B039FC6D07707F208F3E0DA /* Pods_makingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2AAB5E06BC79BB784F0D69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8AE4EEB948E3577F0B395AFC /* Pods-makingApp.debug.xcconfig */,
+				BAAFC85185C9D06A06685C6C /* Pods-makingApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		51B32FDC21C8CBB2007D6462 = {
 			isa = PBXGroup;
 			children = (
 				51B32FE721C8CBB2007D6462 /* makingApp */,
 				51B32FE621C8CBB2007D6462 /* Products */,
+				4B2AAB5E06BC79BB784F0D69 /* Pods */,
+				FA6349BD9CFE033ADFAF6F66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +92,33 @@
 		51B32FE721C8CBB2007D6462 /* makingApp */ = {
 			isa = PBXGroup;
 			children = (
+				51C8045921CA3097005D71E9 /* Main.storyboard */,
 				51B32FE821C8CBB2007D6462 /* AppDelegate.swift */,
+				51C8046921CA5ECD005D71E9 /* meigen.png */,
+				51C8047521CA613F005D71E9 /* myPage.png */,
+				51C8047921CA61D4005D71E9 /* setting.png */,
+				51C8047D21CA66F5005D71E9 /* record.png */,
+				51C8047121CA605D005D71E9 /* home.png */,
 				51B32FEA21C8CBB2007D6462 /* ViewController.swift */,
-				51B32FEC21C8CBB2007D6462 /* Main.storyboard */,
+				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
+				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
+				514A7B3321CA87CD00594B68 /* calenderViewController.swift */,
+				514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */,
+				514A7B3521CA8ECC00594B68 /* settingViewController.swift */,
 				51B32FF221C8CBB5007D6462 /* Assets.xcassets */,
 				51B32FF421C8CBB5007D6462 /* LaunchScreen.storyboard */,
 				51B32FF721C8CBB5007D6462 /* Info.plist */,
 				51B32FEF21C8CBB2007D6462 /* makingApp.xcdatamodeld */,
 			);
 			path = makingApp;
+			sourceTree = "<group>";
+		};
+		FA6349BD9CFE033ADFAF6F66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51B32FFA21C8CBB5007D6462 /* Build configuration list for PBXNativeTarget "makingApp" */;
 			buildPhases = (
+				12305D4286982A1DC95A5BC3 /* [CP] Check Pods Manifest.lock */,
 				51B32FE121C8CBB2007D6462 /* Sources */,
 				51B32FE221C8CBB2007D6462 /* Frameworks */,
 				51B32FE321C8CBB2007D6462 /* Resources */,
+				3A3B22B5B1FBFF34AFF6CD20 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,35 +182,88 @@
 			buildActionMask = 2147483647;
 			files = (
 				51B32FF621C8CBB5007D6462 /* LaunchScreen.storyboard in Resources */,
+				51C8046A21CA5ECD005D71E9 /* meigen.png in Resources */,
+				51C8047221CA605D005D71E9 /* home.png in Resources */,
+				51C8047A21CA61D5005D71E9 /* setting.png in Resources */,
+				51C8047E21CA66F5005D71E9 /* record.png in Resources */,
 				51B32FF321C8CBB5007D6462 /* Assets.xcassets in Resources */,
-				51B32FEE21C8CBB2007D6462 /* Main.storyboard in Resources */,
+				51C8047621CA613F005D71E9 /* myPage.png in Resources */,
+				51C8045A21CA3097005D71E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		12305D4286982A1DC95A5BC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-makingApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A3B22B5B1FBFF34AFF6CD20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-makingApp/Pods-makingApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-makingApp/Pods-makingApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		51B32FE121C8CBB2007D6462 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */,
 				51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */,
+				514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */,
 				51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */,
+				514A7B3821CA944F00594B68 /* settingDetailsViewController.swift in Sources */,
+				514A7B3A21CA9BF100594B68 /* quotationViewController.swift in Sources */,
 				51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */,
+				514A7B3C21CAA12900594B68 /* myPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		51B32FEC21C8CBB2007D6462 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				51B32FED21C8CBB2007D6462 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		51B32FF421C8CBB5007D6462 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +393,7 @@
 		};
 		51B32FFB21C8CBB5007D6462 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AE4EEB948E3577F0B395AFC /* Pods-makingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +412,7 @@
 		};
 		51B32FFC21C8CBB5007D6462 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAAFC85185C9D06A06685C6C /* Pods-makingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
