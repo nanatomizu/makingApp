@@ -10,6 +10,7 @@ import UIKit
 //TODO:やることたくさん
 //TODO:タグ付け
 //TODO:テキストに入力されたデータを飛ばす
+//TODO:save押した後にMypageへとばすコード遷移の
 
 class setGoalViewController: UIViewController {
 
@@ -26,9 +27,26 @@ class setGoalViewController: UIViewController {
     }
     
     @IBAction func tapBtnSave(_ sender: Any) {
-        
+        //アラートオブジェクトを作る
+        let alert = UIAlertController(title: "", message: "保存しますか？", preferredStyle: .alert)
+        //OKボタンをアラートオブジェクトに追加
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in self.Home()}))
+        //アラートを画面に表示する
+        present(alert,animated: true)
+        //presentで表示する
     }
-    
-    
-
+ 
+//    func myMessage(){ //myMessageは関数
+//        print("OK押されました")
+////    }
+      func Home(){
+        //まずは、同じstororyboard内であることをここで定義します
+        let storyboard: UIStoryboard = self.storyboard!
+        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+        let second = storyboard.instantiateViewController(withIdentifier: "Home")
+        //ここが実際に移動するコードとなります
+        self.present(second, animated: true, completion: nil)
+    }
 }
+
+

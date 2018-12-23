@@ -24,6 +24,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
     super.viewDidLoad()
         
+        
+        
         //テーブルビュー の要素にタグ付け、判別しやすくするため
         goalTableView.tag = 1
         dailyTableView.tag = 2
@@ -59,9 +61,4 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
         
     }
-  
-    
 }
-    
-    
-

@@ -13,6 +13,7 @@ class settingDetailsViewController: UIViewController {
 //    TODO:settingList内の説明を配列組んで書く
     
      var settingList = ["このアプリについて","ライセンス","通知設定"]
+    var detailsetting = ["このアプリは三日坊主に悩むあなた、目標に向かって頑張りたいあなたのためのアプリです。","seven.license","通知を受け取るor受け取らない"]
     
     @IBOutlet weak var settingDetailsTextView: UITextView!
     var selectedIndex = -1
@@ -28,7 +29,7 @@ class settingDetailsViewController: UIViewController {
         print("選択された行番号：\(selectedIndex)")
         
         settingDetailsTextView.text =
-            settingList[selectedIndex]
+            detailsetting[selectedIndex]
         
         
 

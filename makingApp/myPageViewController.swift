@@ -11,8 +11,13 @@ import Charts
 //TODO:データの受け渡し
 //TODO:データに応じて値を変える
 
+let w = UIScreen.main.bounds.size.width
+let h = UIScreen.main.bounds.size.height
 
 class myPageViewController: UIViewController {
+    
+    
+
     
     @IBOutlet weak var monthlyView:PieChartView!
     @IBOutlet weak var weeklyView: PieChartView!
@@ -25,7 +30,16 @@ class myPageViewController: UIViewController {
         setupGraph()
         setupGrapha2()
         setupGraph3()
-       
+        //目標追加ボタン
+        let addBtn = UIButton(frame: CGRect(x: w   - 70, y: h - 150 , width: 60, height: 60))
+        addBtn.setTitle("+", for: UIControl.State())
+        addBtn.setTitleColor(.white, for: UIControl.State())
+        addBtn.backgroundColor = .orange
+        addBtn.layer.cornerRadius = 30.0
+        addBtn.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        view.addSubview(addBtn)
+
+        
         
     }
     func setupGraph() {
@@ -99,15 +113,19 @@ class myPageViewController: UIViewController {
                 dailyView.backgroundColor = UIColor.red
             }
         }
+    //画面遷移(目標登録ページ)
+    @objc func onClick(_: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
+        present(SecondController, animated: true, completion: nil)
+    }
     
        
-            
-    
-    
+
     
            
           
-        }
+
       
 
    
@@ -127,3 +145,4 @@ class myPageViewController: UIViewController {
 
 
 
+}
