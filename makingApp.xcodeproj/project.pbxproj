@@ -26,6 +26,7 @@
 		51C8047E21CA66F5005D71E9 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047D21CA66F5005D71E9 /* record.png */; };
 		51EB068E21CBD0CA007AD545 /* setGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */; };
 		51EB069021CBD76A007AD545 /* recordYourVoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */; };
+		51EB069221CE090B007AD545 /* checkResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB069121CE090B007AD545 /* checkResultViewController.swift */; };
 		7B039FC6D07707F208F3E0DA /* Pods_makingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		51C8047D21CA66F5005D71E9 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalViewController.swift; sourceTree = "<group>"; };
 		51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordYourVoiceViewController.swift; sourceTree = "<group>"; };
+		51EB069121CE090B007AD545 /* checkResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkResultViewController.swift; sourceTree = "<group>"; };
 		8AE4EEB948E3577F0B395AFC /* Pods-makingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-makingApp/Pods-makingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BAAFC85185C9D06A06685C6C /* Pods-makingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-makingApp/Pods-makingApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				51C8047D21CA66F5005D71E9 /* record.png */,
 				51C8047121CA605D005D71E9 /* home.png */,
 				51B32FEA21C8CBB2007D6462 /* ViewController.swift */,
+				51EB069121CE090B007AD545 /* checkResultViewController.swift */,
 				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
 				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
 				51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */,
@@ -261,6 +264,7 @@
 			files = (
 				514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */,
 				51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */,
+				51EB069221CE090B007AD545 /* checkResultViewController.swift in Sources */,
 				51EB068E21CBD0CA007AD545 /* setGoalViewController.swift in Sources */,
 				514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */,
 				51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */,
