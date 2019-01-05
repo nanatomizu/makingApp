@@ -64,9 +64,7 @@ class myPageViewController: UIViewController {
             print("memo:ChartDate",chartData.dataSets)
              monthlyView.data = chartData
             
-             monthlyView.backgroundColor = UIColor.green
-            
-            
+         
             
         }
     }
@@ -86,8 +84,7 @@ class myPageViewController: UIViewController {
                 let chartData = PieChartData(dataSet: dataSet)
                 print("memo:ChartDate",chartData.dataSets)
                 weeklyView.data = chartData
-                weeklyView.backgroundColor = UIColor.blue
-                
+               
             }
         }
                 
@@ -110,7 +107,6 @@ class myPageViewController: UIViewController {
                     print("memo:ChartDate",chartData.dataSets)
                      dailyView.data = chartData
                     
-                dailyView.backgroundColor = UIColor.red
             }
         }
     //画面遷移(目標登録ページ)

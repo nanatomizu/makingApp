@@ -8,12 +8,23 @@
 
 //TODO:TabBarで書くページへの繋げ方
 import UIKit
+import RealmSwift
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+let goalInfo = GoalInfo()
+
+
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
+{
     
-    var homePageGoals = ["サブスリー達成","アイアンマンレース完走","読書"]
-    var homePageDailyGoals = ["走る　１０キロ","ロードバイク　120キロ","読書　10分"]
-    var homePageDailyTime = ["10:00","12:00","19:00"]
+    
+
+    
+    let realm = try! Realm()
+    
+//    var homePageGoals:[String] = ["a","b","c","","" ]
+//     
+//    var homePageDailyGoals = ["走る１０キロ","ロードバイク　120キロ","読書　10分"]
+//    var homePageDailyTime = ["10:00","12:00","19:00"]
     
     @IBOutlet weak var goalTableView: UITableView!
     @IBOutlet weak var dailyTableView: UITableView!
@@ -21,44 +32,67 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
    
     
+    
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        
-        
+
         //テーブルビュー の要素にタグ付け、判別しやすくするため
         goalTableView.tag = 1
         dailyTableView.tag = 2
         timeTableView.tag = 3
-        
-     
-    }
     
+        
+    
+    //ゴール情報の更新、インスタンス化
+//        let goalInfo = GoalInfo()
+        goalInfo.readAll()
+        print(goalInfo.goalList)
+//        print("0つ目を出したよ\(goalInfo.goalList[0])")
+//        print("0つ目のgoalを出したよ\(goalInfo.goalList[0]["goal"])")
+      
+    }
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //if文で表す　funcの中へすじ上記の変数が全て送られてくるためにTagで区別
-        if tableView.tag == 1{
-            return homePageGoals.count
-        }else if tableView.tag == 2{
-            return homePageDailyGoals.count
-        }else{
-            return homePageDailyTime.count
-        }
-        
+//        セルの数指定
+//        if tableView.tag == 1{
+            return goalInfo.goalList.count
+//        }else if tableView.tag == 2{
+//            return goalInfo.goalList.count
+//        }else{
+//            return goalInfo.goalList.count
+//        }
+      
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
+
         let cell = UITableViewCell(style: .default, reuseIdentifier: "mycell")
-        
+       
+    
 //        ラベルに３つ変数の中身を表示
         if tableView.tag == 1{
-            cell.textLabel!.text = homePageGoals[indexPath.row]
+            cell.textLabel!.text = goalInfo.goalList[indexPath.row]["goal"] as! String
         }else if tableView.tag == 2{
-        cell.textLabel!.text = homePageDailyGoals[indexPath.row]
+            cell.textLabel!.text = goalInfo.goalList[indexPath.row]["monthlyGoal"] as! String
         }else{
-        cell.textLabel!.text = homePageDailyTime[indexPath.row]
-        }
-        return cell
+            cell.textLabel!.text = goalInfo.goalList[indexPath.row]["dailyGoal"] as! String
         
+        }
+         return cell
+    }
+    
+
+
+   
+
+    
+    
+       
+  
+    @IBAction func tapBtn(_ sender: Any) {
+       goalInfo.deleteAll()
     }
 }

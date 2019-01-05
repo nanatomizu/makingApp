@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
+
+let checkRecord = GoalInfo()
 //TODO:もう一枚ページを作って確認するのか、アクションで確認するのかを考える
 //TODO:先ずはデータの送信
 class checkResultViewController: UIViewController {
     
-    var goals = ["１００キロ走る","フルマラソン完走","美味しいものをたべる"]
+//    var goals = ["１００キロ走る","フルマラソン完走","美味しいものをたべる"]
     var rate = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"]
     
     var comment = ""
@@ -27,6 +30,7 @@ class checkResultViewController: UIViewController {
         super.viewDidLoad()
         print(comment)
         checkResultCommentTextView.text = comment
+        checkRecord.readAll()
 
         // Do any additional setup after loading the view.
     }
@@ -35,8 +39,10 @@ class checkResultViewController: UIViewController {
         //前の画面で選択された行番号を表示
         print("選択された行番号：\(goalIndex)")
         print("選択された行番号：\(rateIndex)")
+        
+//        print(checkRecord.goalList[goalIndex]["goal"] as! String)
        //ゴールとrateを表示
-        checkResultGoalLabel.text = goals[goalIndex]
+        checkResultGoalLabel.text = checkRecord.goalList[goalIndex]["goal"] as! String
         checkResultRateLabel.text = rate[rateIndex]
 
     /*
