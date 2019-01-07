@@ -17,7 +17,6 @@ class settingViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
     
     @IBOutlet weak var settingTableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

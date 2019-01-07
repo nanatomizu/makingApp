@@ -14,7 +14,7 @@ let checkRecord = GoalInfo()
 //TODO:先ずはデータの送信
 class checkResultViewController: UIViewController {
     
-//    var goals = ["１００キロ走る","フルマラソン完走","美味しいものをたべる"]
+    var goals = checkRecord.goalList
     var rate = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"]
     
     var comment = ""
@@ -29,7 +29,6 @@ class checkResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(comment)
-        checkResultCommentTextView.text = comment
         checkRecord.readAll()
 
         // Do any additional setup after loading the view.
@@ -42,8 +41,9 @@ class checkResultViewController: UIViewController {
         
 //        print(checkRecord.goalList[goalIndex]["goal"] as! String)
        //ゴールとrateを表示
-        checkResultGoalLabel.text = checkRecord.goalList[goalIndex]["goal"] as! String
+        checkResultGoalLabel.text = goals[goalIndex] as? String
         checkResultRateLabel.text = rate[rateIndex]
+         checkResultCommentTextView.text = comment
 
     /*
     // MARK: - Navigation
