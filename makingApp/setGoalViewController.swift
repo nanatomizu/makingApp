@@ -51,43 +51,45 @@ class setGoalViewController: UIViewController {
         let second = storyboard.instantiateViewController(withIdentifier: "Home")
         //ここが実際に移動するコードとなります
         self.present(second, animated: true, completion: nil)
-    
-        //DB書き込み処理
-            print("データ書き込み開始")
-            
-        
-            
-            try! realm.write {
-                //ゴールの各内容が書き込まれる。
-                let GoalInfo1 = GoalInfo()
-                GoalInfo1.goal = GoalTextField.text!
-                GoalInfo1.monthlyGoal = monthTextField.text!
-                GoalInfo1.dailyGoal = dailyTextField.text!
-                realm.add(GoalInfo1)
-                print("データ書き込み中")
-                print(GoalInfo1)
-            }
-            
-            print("データ書き込み完了")
-        
-      
-        
-        
-        
-        }
-    
-    
-    @IBAction func endGoal(_ sender: Any) {
-        
-    }
-    
-    @IBAction func endmonth(_ sender: Any) {
-    }
-    
-    @IBAction func enddaily(_ sender: Any) {
-    }
-    
-    }
-
-
-
+//
+//        //DB書き込み処理
+//            print("データ書き込み開始")
+//
+//
+//
+//            try! realm.write {
+//                //ゴールの各内容が書き込まれる。
+//                let GoalInfo1 = goalInfo()
+//                GoalInfo1.goal = GoalTextField.text!
+//                GoalInfo1.monthlyGoal = monthTextField.text!
+//                GoalInfo1.dailyGoal = dailyTextField.text!
+//                realm.add(GoalInfo1)
+//                print("データ書き込み中")
+//                print(GoalInfo1)
+//            }
+//
+//            print("データ書き込み完了")
+//
+//
+//
+//
+//
+//        }
+//
+//
+//    @IBAction func endGoal(_ sender: Any) {
+//
+//    }
+//
+//    @IBAction func endmonth(_ sender: Any) {
+//    }
+//
+//    @IBAction func enddaily(_ sender: Any) {
+//    }
+//
+//    }
+//
+//
+//
+}
+}

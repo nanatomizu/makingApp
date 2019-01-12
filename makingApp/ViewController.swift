@@ -10,7 +10,8 @@
 import UIKit
 import RealmSwift
 
-let goalInfo = GoalInfo()
+let goalInfo = GoalFirstInfo()
+let dayTimeInfo = DayMonthTimeInfo()
 
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
@@ -47,6 +48,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //ゴール情報の更新、インスタンス化
 //        let goalInfo = GoalInfo()
         goalInfo.readAll()
+        dayTimeInfo.readAll()
         print(goalInfo.goalList)
 //        print("0つ目を出したよ\(goalInfo.goalList[0])")
 //        print("0つ目のgoalを出したよ\(goalInfo.goalList[0]["goal"])")
@@ -76,9 +78,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if tableView.tag == 1{
             cell.textLabel!.text = goalInfo.goalList[indexPath.row]["goal"] as! String
         }else if tableView.tag == 2{
-            cell.textLabel!.text = goalInfo.goalList[indexPath.row]["monthlyGoal"] as! String
+//            cell.textLabel!.text = dayTimeInfo.goalListMonthdayTime[indexPath.row][" goalImageComment"] as! String
         }else{
-            cell.textLabel!.text = goalInfo.goalList[indexPath.row]["dailyGoal"] as! String
+            cell.textLabel!.text = dayTimeInfo.goalListMonthdayTime[indexPath.row]["todayTime"] as! String
         
         }
          return cell

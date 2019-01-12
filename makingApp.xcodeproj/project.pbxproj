@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */; };
+		512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */; };
 		514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3321CA87CD00594B68 /* calenderViewController.swift */; };
 		514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3521CA8ECC00594B68 /* settingViewController.swift */; };
 		514A7B3821CA944F00594B68 /* settingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */; };
@@ -14,9 +16,8 @@
 		514A7B3C21CAA12900594B68 /* myPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3B21CAA12900594B68 /* myPageViewController.swift */; };
 		514A7B4021CB666700594B68 /* recordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3F21CB666700594B68 /* recordPageViewController.swift */; };
 		514B2FE821D88319008C5E63 /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514B2FE721D88319008C5E63 /* RealmData.swift */; };
-		514C515521E1E703003D62AF /* setGoalFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514C515421E1E703003D62AF /* setGoalFirstViewController.swift */; };
-		514C515721E1F8C2003D62AF /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514C515621E1F8C2003D62AF /* setGoalSecondViewController.swift */; };
 		514C515921E208CB003D62AF /* notificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514C515821E208CB003D62AF /* notificationViewController.swift */; };
+		5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163FF4A21EA3F2900049171 /* homeViewController.swift */; };
 		51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FE821C8CBB2007D6462 /* AppDelegate.swift */; };
 		51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEA21C8CBB2007D6462 /* ViewController.swift */; };
 		51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEF21C8CBB2007D6462 /* makingApp.xcdatamodeld */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setGoalFirstViewController.swift; sourceTree = "<group>"; };
+		512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
 		514A7B3321CA87CD00594B68 /* calenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calenderViewController.swift; sourceTree = "<group>"; };
 		514A7B3521CA8ECC00594B68 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingDetailsViewController.swift; sourceTree = "<group>"; };
@@ -44,9 +47,8 @@
 		514A7B3B21CAA12900594B68 /* myPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPageViewController.swift; sourceTree = "<group>"; };
 		514A7B3F21CB666700594B68 /* recordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordPageViewController.swift; sourceTree = "<group>"; };
 		514B2FE721D88319008C5E63 /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
-		514C515421E1E703003D62AF /* setGoalFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalFirstViewController.swift; sourceTree = "<group>"; };
-		514C515621E1F8C2003D62AF /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
 		514C515821E208CB003D62AF /* notificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationViewController.swift; sourceTree = "<group>"; };
+		5163FF4A21EA3F2900049171 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		51B32FE521C8CBB2007D6462 /* makingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B32FE821C8CBB2007D6462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51B32FEA21C8CBB2007D6462 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,14 +122,15 @@
 				51B32FEA21C8CBB2007D6462 /* ViewController.swift */,
 				51EB069121CE090B007AD545 /* checkResultViewController.swift */,
 				51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */,
-				514C515421E1E703003D62AF /* setGoalFirstViewController.swift */,
 				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
 				514C515821E208CB003D62AF /* notificationViewController.swift */,
-				514C515621E1F8C2003D62AF /* setGoalSecondViewController.swift */,
+				5163FF4A21EA3F2900049171 /* homeViewController.swift */,
+				512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */,
 				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
 				51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */,
 				514B2FE721D88319008C5E63 /* RealmData.swift */,
 				514A7B3321CA87CD00594B68 /* calenderViewController.swift */,
+				512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */,
 				514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */,
 				514A7B3521CA8ECC00594B68 /* settingViewController.swift */,
 				51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */,
@@ -282,16 +285,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				514C515921E208CB003D62AF /* notificationViewController.swift in Sources */,
+				5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */,
 				514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */,
 				51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */,
-				514C515721E1F8C2003D62AF /* setGoalSecondViewController.swift in Sources */,
 				51EB069221CE090B007AD545 /* checkResultViewController.swift in Sources */,
 				51EB068E21CBD0CA007AD545 /* setGoalViewController.swift in Sources */,
 				514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */,
+				512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */,
 				51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */,
-				514C515521E1E703003D62AF /* setGoalFirstViewController.swift in Sources */,
 				514A7B3821CA944F00594B68 /* settingDetailsViewController.swift in Sources */,
 				51F1535821CF712500AF92FF /* favoriteQuotationViewController.swift in Sources */,
+				512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */,
 				51EB069021CBD76A007AD545 /* recordYourVoiceViewController.swift in Sources */,
 				514A7B4021CB666700594B68 /* recordPageViewController.swift in Sources */,
 				514A7B3A21CA9BF100594B68 /* quotationViewController.swift in Sources */,

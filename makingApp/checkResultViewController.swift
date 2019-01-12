@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-let checkRecord = GoalInfo()
+let checkRecord = GoalFirstInfo()
 //TODO:もう一枚ページを作って確認するのか、アクションで確認するのかを考える
 //TODO:先ずはデータの送信
 class checkResultViewController: UIViewController {

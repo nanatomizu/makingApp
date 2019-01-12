@@ -13,6 +13,8 @@ import RealmSwift
 
 class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
+     let realm = try! Realm()
+    
     //変数を宣言する
     //今日の日付を代入
     let nowDate = NSDate()
@@ -125,12 +127,36 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     
     //日付を出してます
     print(inputDatePicker.date)
-   
+   print(dateSelecter.text!)
     }
    
   
     
     @IBAction func clsGoal(_ sender: Any) {
+    }
+    
+    @IBAction func btnNextPage(_ sender: Any) {
+        //DB書き込み処理
+        print("データ書き込み開始")
+        
+        
+        
+        try! realm.write {
+            //ゴールの各内容が書き込まれる。
+            let goalFirstInfo1 = GoalFirstInfo()
+            goalFirstInfo1.goal = goalTextField.text!
+            goalFirstInfo1.dueDay = dateSelecter.text!
+            goalFirstInfo1.goalImageComment = goalDetailTextView.text!
+            realm.add(goalFirstInfo1)
+            print("データ書き込み中")
+            print(goalFirstInfo1)
+        }
+        
+        print("データ書き込み完了")
+        
+        
+        
+        
     }
     
 }

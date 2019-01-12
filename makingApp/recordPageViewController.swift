@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-let recordToday = GoalInfo()
+let recordToday = GoalFirstInfo()
 //TODO:データを飛ばす方法
 class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
