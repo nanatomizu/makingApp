@@ -35,8 +35,56 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
         ratePickerView.tag = 2
         recordToday.readAll()
         
+        //commentTextViewの話
+        // 枠のカラー
+        commentTextView.layer.borderColor = UIColor.gray.cgColor
+        
+        // 枠の幅
+       commentTextView.layer.borderWidth = 1.0
+        
+        // 枠を角丸にする場合
+        commentTextView.layer.cornerRadius = 10.0
+            commentTextView.layer.masksToBounds = true
+        
+        //////////UIToolBarの設定////////////////////
+        //キードードを閉じるボタンを作るためにツールバーを生成
+        let toolBar = UIToolbar()
+        
+        //toolBarのサイズを設定
+        toolBar.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
+        
+        //画面幅に合わせるように設定
+        toolBar.sizeToFit()
+        
+        //Doneボタンを右に配置するためのスペース
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        
+        //完了ボタン
+        let doneButton      = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(recordPageViewController.doneButton))
+        //        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(setGoalFirstViewController.doneButton))
+        
+        //ツールバーにボタンを設定
+        toolBar.items = [space,doneButton]
+        
+        
+        
+        
+        
+        //goalDetailTextViewにツールバーを設定
+       commentTextView.inputAccessoryView = toolBar
+        
+        //Viewに追加
+        self.view.addSubview(commentTextView)
 
     }
+    
+    //doneボタンを押した時の処理
+    @objc func doneButton(){
+        
+        //キーボードを閉じる
+        self.view.endEditing(true)
+    }
+    
     
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
@@ -95,27 +143,29 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
 //        rateIndex = indexPath.row
         //セグエの名前を指定して、移動
 
-//    performSegue(withIdentifier:"scRecordResult", sender: nil)
+    performSegue(withIdentifier:"scRecordResult", sender: nil)
 //        print(indexPath.row)
 
     
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let crVC = segue.destination as! checkResultViewController
-        crVC.goalIndex = goalIndex
-        crVC.rateIndex = rateIndex
+//        let crVC = segue.destination as! checkResultViewController
+//        crVC.goalIndex = goalIndex
+//        crVC.rateIndex = rateIndex
         print("送る時のgoalIndex:\(goalIndex)")
         print("送る時のrateIndex:\(rateIndex)")
         print("送る時のgoalIndex:\(recordToday.goalList[goalIndex])")
         if segue.identifier == "scRecordResult"{
             let checkResultViewController:checkResultViewController = segue.destination as! checkResultViewController
             checkResultViewController.comment = self.commentTextView.text
+            let crVC = segue.destination as! checkResultViewController
+                   crVC.goalIndex = goalIndex
+                   crVC.rateIndex = rateIndex
+            
 
         }
-            
-       
     }
-
+    
     
 
 }

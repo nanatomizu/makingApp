@@ -7,8 +7,22 @@
 //
 
 import UIKit
+import RealmSwift
+
+
 
 class notificationViewController: UIViewController,UITextFieldDelegate{
+    
+    let realm = try! Realm()
+    
+    var goal:String!
+    var dueDate:String!
+    var goalDetail:String?
+    var monthGoal:String!
+    var dayGoal:String!
+    var dayTime:String!
+    
+    
     
     //変数を宣言する
     //今日の日付を代入
@@ -23,16 +37,29 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var notificationTimeTextField: UITextField!
     @IBOutlet weak var notificationWordtextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+      notificationWordtextField.text = ""
+        notificationTimeTextField.text = ""
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //日付フィールドの設定
-//        dateFormat.dateFormat = "yyyy年MM月dd日"
+        dateFormat.dateFormat = "hh時mm分"
 //        notificationTimeTextField.text = dateFormat.string(from: nowDate as Date)
        notificationTimeTextField.delegate = self
         dateFormat.dateStyle = .none
         dateFormat.timeStyle = .short
         dateFormat.locale = Locale(identifier: "ja_JP")
-        
+        print("ここから")
+        print(goal!)
+        print(goalDetail!)
+        print(dueDate!)
+        print(monthGoal!)
+        print(dayGoal!)
+        print(dayTime!)
+        print("ここまでデータ送れてるか確認")
       
         
         
@@ -76,9 +103,53 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
         
     }
     
+    @IBAction func saveGoalNitification(_ sender: Any) {
+        //DB書き込み処理
+        print("データ書き込み開始")
+
+
+
+        try! realm.write {
+            //ゴールの各内容が書き込まれる。
+            let goalFirstInfo1 = GoalFirstInfo()
+            goalFirstInfo1.goal = goal!
+            goalFirstInfo1.dueDay = dueDate!
+            goalFirstInfo1.goalImageComment = goalDetail!
+            goalFirstInfo1.monthlyGoal = monthGoal!
+            goalFirstInfo1.dailyGoal = dayGoal!
+            goalFirstInfo1.todayTime = dayTime!
+            goalFirstInfo1.notificationWord = notificationWordtextField.text!
+            goalFirstInfo1.notificationTime = notificationTimeTextField.text!
+            
+            realm.add(goalFirstInfo1)
+            print("データ書き込み中")
+            print(goalFirstInfo1)
+        }
+
+        print("データ書き込み完了")
+        
+        goHome()
+        
+        
+        
+   }
+    func goHome(){
+        //まずは、同じstororyboard内であることをここで定義します
+                let storyboard: UIStoryboard = self.storyboard!
+           //ここで移動先のstoryboardを選択
+                let second = storyboard.instantiateViewController(withIdentifier: "Home")
+                //ここが実際に移動するコードとなります
+                self.present(second, animated: true, completion: nil)
+        
+        
+            }
+    
+    
+    
     @IBAction func endNotification(_ sender: Any) {
     }
     
     
 }
+
 

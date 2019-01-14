@@ -14,7 +14,6 @@ let checkRecord = GoalFirstInfo()
 //TODO:先ずはデータの送信
 class checkResultViewController: UIViewController {
     
-    var goals = checkRecord.goalList
     var rate = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"]
     
     var comment = ""
@@ -41,7 +40,7 @@ class checkResultViewController: UIViewController {
         
 //        print(checkRecord.goalList[goalIndex]["goal"] as! String)
        //ゴールとrateを表示
-        checkResultGoalLabel.text = goals[goalIndex] as? String
+        checkResultGoalLabel.text = checkRecord.goalList[goalIndex] as? String
         checkResultRateLabel.text = rate[rateIndex]
          checkResultCommentTextView.text = comment
 
@@ -62,4 +61,6 @@ class checkResultViewController: UIViewController {
 //        checkResultRateLabel.text = rate[selectIndex]
 
 }
+    
+    
 }

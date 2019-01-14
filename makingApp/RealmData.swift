@@ -2,60 +2,60 @@
 //  RealmData.swift
 //  makingApp
 //
-//  Created by 水谷七渡 on 2018/12/30.
-//  Copyright © 2018 Nanato Mizutani. All rights reserved.
+//  Created by 水谷七渡 on 2019/01/13.
+//  Copyright © 2019 Nanato Mizutani. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
- class GoalFirstInfo: Object {
+class GoalFirstInfo: Object {
     
     @objc dynamic var goal = String()
-//    @objc dynamic var monthlyGoal = String()
-//    @objc dynamic var dailyGoal = String()
+    @objc dynamic var monthlyGoal = String()
+    @objc dynamic var dailyGoal = String()
     @objc dynamic var goalImageComment = String()
-//    @objc dynamic var recordComment = String()
-//    @objc dynamic var notificationWord = String()
+    //    @objc dynamic var recordComment = String()
+    @objc dynamic var notificationWord = String()
     @objc dynamic var dueDay = String()
-//    @objc dynamic var todayTime = Int()
-//    @objc dynamic var notificationTime = Int()
+    @objc dynamic var todayTime = String()
+    @objc dynamic var notificationTime = String()
     var goalList = [NSDictionary]()
-
- //データの書き込み処理
-    func creat(goal:String,goalImageComment:String,dueday:Int/*monthlyGoal:String,dailyGoal:String
-        ,recordComment:String,notificationWord:String,dueday:Int,todayTime:Int,notificationTime:Int*/){
-    let realm = try! Realm()
     
-   
-    try! realm.write{
-   
-        //インスタンス化
-        let goalFirstInfo = GoalFirstInfo()
-        goalFirstInfo.goal = goal
-//        goalInfo.monthlyGoal = monthlyGoal
-//        goalInfo.dailyGoal = dailyGoal
-        goalFirstInfo.goalImageComment = goalImageComment
-//        goalInfo.recordComment = recordComment
-//        goalInfo.notificationWord = notificationWord
-        goalFirstInfo.dueDay = dueDay
-//        goalInfo.todayTime = todayTime
-//        goalInfo.notificationTime = notificationTime
-        realm.add(goalFirstInfo)
-    }
-}
-//データ読み込み処理。データベースからデータを取ってくる処理
-func readAll(){
-    self.goalList = []
-    let realm = try! Realm()
-    let goalInfo = realm.objects(GoalFirstInfo.self)
-    for value in goalInfo {
-        let goals = ["goal":value.goal,"dueDay":value.dueDay,"goalImageComment":value.goalImageComment/*"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,,"todayTime":value.todayTime*/] as NSDictionary
+    //データの書き込み処理
+    func creat(goal:String,goalImageComment:String,dueday:String,monthlyGoal:String,dailyGoal:String
+        ,notificationWord:String,todayTime:String,notificationTime:String){
+        let realm = try! Realm()
         
-        self.goalList.append(goals)
         
+        try! realm.write{
+            
+            //インスタンス化
+            let goalFirstInfo = GoalFirstInfo()
+            goalFirstInfo.goal = goal
+            goalFirstInfo.monthlyGoal = monthlyGoal
+            goalFirstInfo.dailyGoal = dailyGoal
+            goalFirstInfo.goalImageComment = goalImageComment
+            //        goalInfo.recordComment = recordComment
+            goalFirstInfo.notificationWord = notificationWord
+            goalFirstInfo.dueDay = dueDay
+            goalFirstInfo.todayTime = todayTime
+            goalFirstInfo.notificationTime = notificationTime
+            realm.add(goalFirstInfo)
+        }
     }
-}
+    //データ読み込み処理。データベースからデータを取ってくる処理
+    func readAll(){
+        self.goalList = []
+        let realm = try! Realm()
+        let goalInfo = realm.objects(GoalFirstInfo.self)
+        for value in goalInfo {
+            let goals = ["goal":value.goal,"dueDay":value.dueDay,"goalImageComment":value.goalImageComment,"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,"todayTime":value.todayTime,"notificationWord":value.notificationWord,"notificationTime":value] as NSDictionary
+            
+            self.goalList.append(goals)
+            
+        }
+    }
     func deleteAll(){
         let realm = try!Realm()
         try! realm.write(){
@@ -64,38 +64,35 @@ func readAll(){
     }
 }
 
-class DayMonthTimeInfo:Object {
-    @objc dynamic var monthlyGoal = String()
-    @objc dynamic var dailyGoal = String()
-     @objc dynamic var todayTime = String()
-    var goalListMonthdayTime = [NSDictionary]()
+class FavoritesQuotation: Object {
+    @objc dynamic var favorites = Bool()
     
     //データ書き込み処理
-    func creat(monthlyGoal:String,dailyGoal:String,todayTime:String
-        ){
+    func create(favorites:String){
         let realm = try! Realm()
-        try! realm.write{
-            
-            //インスタンス化
-            let dayMonthTimeInfo1 = DayMonthTimeInfo()
-       dayMonthTimeInfo1.monthlyGoal = monthlyGoal
-            dayMonthTimeInfo1.dailyGoal = dailyGoal
-            dayMonthTimeInfo1.todayTime = todayTime
-             realm.add(dayMonthTimeInfo1)
+        
+        try! realm.write {
+            let favoritesQuotation = FavoritesQuotation()
+            favoritesQuotation.favorites = false
             
         }
     }
+    
+    //データ読み込み処理。
     func readAll(){
-        self.goalListMonthdayTime = []
-        let realm = try! Realm()
-        let goalInfo = realm.objects(DayMonthTimeInfo.self)
-        for value in goalInfo {
-            let goals = ["monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,"todayTime":value.todayTime/*"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,,"todayTime":value.todayTime*/] as NSDictionary
-            
-            self.goalListMonthdayTime.append(goals)
-            
-        }
+       let realm = try! Realm()
+        let favoritesQuotation = realm.objects(FavoritesQuotation.self)
+        
     }
+////    お気に入り更新
+//    func upDateFav(favorites:Bool){
+//        let realm = try! Realm()
+//        let favoritesQuotation =  realm.objects(FavoritesQuotation.self)
+//        
+//        try! realm.write {
+//            favoritesQuotation.favorites = favorites
+//        }
+//    }
     
     
 }

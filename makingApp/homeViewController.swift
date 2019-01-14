@@ -10,8 +10,6 @@ import UIKit
 import RealmSwift
 
 let a = GoalFirstInfo()
-let b = DayMonthTimeInfo()
-
 
 
 class homeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -23,7 +21,7 @@ class homeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         a.readAll()
-        b.readAll()
+        
         showTableView.delegate = self
         showTableView.dataSource = self
         
@@ -55,10 +53,10 @@ extension homeViewController{
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         // セルに表示する値を設定する
         cell.textLabel?.text = a.goalList[indexPath.row]["goal"] as! String
-        cell.detailTextLabel?.text = b.goalListMonthdayTime[indexPath.row]["dailyGoal"] as! String
+        cell.detailTextLabel?.text = a.goalList[indexPath.row]["dailyGoal"] as! String
         
         return cell
     }
     
-   
+
 }

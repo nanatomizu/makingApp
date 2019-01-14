@@ -11,8 +11,11 @@ import RealmSwift
 
 class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
     
-    let realm = try! Realm()
-    let a = DayMonthTimeInfo()
+    
+    var goal:String!
+    var dueDate:String!
+    var goalDetail:String!
+    
     //変数を宣言する
     //今日の日付を代入
     //    let nowDate = NSDate()
@@ -27,16 +30,27 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var dayGoalTextView: UITextField!
     @IBOutlet weak var timeSelecterTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+       monthGoalTextView.text = ""
+        dayGoalTextView.text = ""
+        timeSelecterTextField.text = ""
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //日付フィールドの設定
-        //        dateFormat.dateFormat = "yyyy年MM月dd日"
+                dateFormat.dateFormat = "hh時mm分"
         //        notificationTimeTextField.text = dateFormat.string(from: nowDate as Date)
        timeSelecterTextField.delegate = self
         dateFormat.dateStyle = .none
         dateFormat.timeStyle = .short
         dateFormat.locale = Locale(identifier: "ja_JP")
+        print(goal)
+        print(dueDate)
+        print(goalDetail)
+        
         
         // DatePickerの設定(日付用)
         inputDatePicker.datePickerMode = UIDatePicker.Mode.time
@@ -73,29 +87,49 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
         //日付を出してます
         print(dateFormat.dateFormat)
         print(timeSelecterTextField.text!)
+        //指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
+//        self.performSegue(withIdentifier: "nextNotification"
+//            , sender:nil)
     }
 
     @IBAction func btnNextPage(_ sender: Any) {
-        //DB書き込み処理
-        print("データ書き込み開始")
+//        goToNextPage()
         
-        
-        try! realm.write{
-        let dayMonthTimeInfo1 = DayMonthTimeInfo()
-        dayMonthTimeInfo1.monthlyGoal = monthGoalTextView.text!
-        dayMonthTimeInfo1.dailyGoal = dayGoalTextView.text!
-        dayMonthTimeInfo1.todayTime = timeSelecterTextField.text!
-        realm.add(dayMonthTimeInfo1)
-            
-            print(dayMonthTimeInfo1)
-         print("データ書き込み完了")
         }
+    func goToNextPage(){
+//        指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
+//        self.performSegue(withIdentifier: "nextNotification"
+//            , sender:nil)
+        //        //まずは、同じstororyboard内であることをここで定義します
+                let storyboard: UIStoryboard = self.storyboard!
+        //        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+                let second = storyboard.instantiateViewController(withIdentifier: "Nitification")
+                //ここが実際に移動するコードとなります
+                self.present(second, animated: true, completion: nil)
+        
+        
+    }
+    
+    //Segueの初期化を通知するメソッドをオーバーライドする。senderにはperformSegue()で渡した値が入る。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "nextNotification" {
+            let nVC = segue.destination as! notificationViewController
+            nVC.goal = goal
+            nVC.dueDate = dueDate
+            nVC.goalDetail = goalDetail
+            nVC.monthGoal = monthGoalTextView.text
+            nVC.dayGoal = dayGoalTextView.text
+            nVC.dayTime = timeSelecterTextField.text
+        }
+    }
+   
+    
 
    
         
         
         
-    }
+    
     
     @IBAction func endMonth(_ sender: Any) {
     }

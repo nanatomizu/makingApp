@@ -88,8 +88,9 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         //Doneボタンを右に配置するためのスペース
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         
-        //Doneボタン
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(setGoalFirstViewController.doneButton))
+        //完了ボタン
+         let doneButton      = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(setGoalFirstViewController.doneButton))
+//        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(setGoalFirstViewController.doneButton))
         
         //ツールバーにボタンを設定
         toolBar.items = [space,doneButton]
@@ -103,6 +104,11 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         
         //Viewに追加
         self.view.addSubview(goalDetailTextView)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        goalTextField.text = ""
+        goalDetailTextView.text = ""
+        
     }
     
     
@@ -128,6 +134,7 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     //日付を出してます
     print(inputDatePicker.date)
    print(dateSelecter.text!)
+//    self.performSegue(withIdentifier: "mySegue", sender:nil)
     }
    
   
@@ -135,29 +142,56 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     @IBAction func clsGoal(_ sender: Any) {
     }
     
-    @IBAction func btnNextPage(_ sender: Any) {
-        //DB書き込み処理
-        print("データ書き込み開始")
+
+    @IBAction func nextPageBtn(_ sender: UIButton) {
+//         self.performSegue(withIdentifier: "mySegue", sender:nil)
+//   
+            }
+    //        //DB書き込み
+//        print("データ書き込み開始")
+//
+//
+//
+//        try! realm.write {
+//            //ゴールの各内容が書き込まれる。
+//            let goalFirstInfo1 = GoalFirstInfo()
+//            goalFirstInfo1.goal = goalTextField.text!
+//            goalFirstInfo1.dueDay = dateSelecter.text!
+//            goalFirstInfo1.goalImageComment = goalDetailTextView.text!
+//            realm.add(goalFirstInfo1)
+//            print("データ書き込み中")
+//            print(goalFirstInfo1)
+//        }
+//
+//        print("データ書き込み完了")
         
         
         
-        try! realm.write {
-            //ゴールの各内容が書き込まれる。
-            let goalFirstInfo1 = GoalFirstInfo()
-            goalFirstInfo1.goal = goalTextField.text!
-            goalFirstInfo1.dueDay = dateSelecter.text!
-            goalFirstInfo1.goalImageComment = goalDetailTextView.text!
-            realm.add(goalFirstInfo1)
-            print("データ書き込み中")
-            print(goalFirstInfo1)
+        
+    
+//    func goToNextPage(){
+//        //        指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
+//        //        self.performSegue(withIdentifier: "nextNotification"
+//        //            , sender:nil)
+//        //        //まずは、同じstororyboard内であることをここで定義します
+//        let storyboard: UIStoryboard = self.storyboard!
+//        //        //ここで移動先のstoryboardを選択
+//        let second = storyboard.instantiateViewController(withIdentifier: "goalSecond")
+//        //ここが実際に移動するコードとなります
+//        self.present(second, animated: true, completion: nil)
+//
+//
+//    }
+    //Segueの初期化を通知するメソッドをオーバーライドする。senderにはperformSegue()で渡した値が入る。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegue" {
+            let nVC = segue.destination as! setGoalSecondViewController
+           nVC.goal = goalTextField.text
+            nVC.dueDate = dateSelecter.text
+            nVC.goalDetail = goalDetailTextView.text
         }
-        
-        print("データ書き込み完了")
-        
-        
-        
-        
     }
+    
     
 }
     
