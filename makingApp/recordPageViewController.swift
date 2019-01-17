@@ -13,11 +13,14 @@ let recordToday = GoalFirstInfo()
 //TODO:データを飛ばす方法
 class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
+      let realm = try! Realm()
+    
 //    var goals = ["１００キロ走る","フルマラソン完走","美味しいものをたべる"]
-    var rate = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"]
+    var rate = [0,10,20,30,40,50,60,70,80,90,100]
     
     var goalIndex = -1
     var rateIndex = -1
+    
     
     @IBOutlet weak var goalPickerView: UIPickerView!
     @IBOutlet weak var commentTextView: UITextView!
@@ -118,54 +121,81 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
              goalIndex = row
             print("DB番号：\(recordToday.goalList[row])")
 
-            return recordToday.goalList[row]["goal"] as! String
+            return (recordToday.goalList[row]["goal"] as! String)
 
         }else{
             print("rate[row]:番号\(row)")
             rateIndex = row
             print("rateIndex:\(rate)")
           
-            return rate[row]
+            return  "\(String(rate[row]))%"
         
 
  
         }
-        //意味不明なとこ
-//        performSegue(withIdentifier:"scRecordResult", sender: nil)
-//
-//    }
-
+      
 
         
 
-        //今選択された行番号を格納
-//        goalIndex = indexPath.row
-//        rateIndex = indexPath.row
-        //セグエの名前を指定して、移動
-
-    performSegue(withIdentifier:"scRecordResult", sender: nil)
-//        print(indexPath.row)
-
     
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let crVC = segue.destination as! checkResultViewController
-//        crVC.goalIndex = goalIndex
-//        crVC.rateIndex = rateIndex
-        print("送る時のgoalIndex:\(goalIndex)")
-        print("送る時のrateIndex:\(rateIndex)")
-        print("送る時のgoalIndex:\(recordToday.goalList[goalIndex])")
-        if segue.identifier == "scRecordResult"{
-            let checkResultViewController:checkResultViewController = segue.destination as! checkResultViewController
-            checkResultViewController.comment = self.commentTextView.text
-            let crVC = segue.destination as! checkResultViewController
-                   crVC.goalIndex = goalIndex
-                   crVC.rateIndex = rateIndex
-            
-
+   
+    
+    @IBAction func saveRecordBtn(_ sender: UIButton) {
+        //アラートオブジェクトを作る
+        let alert = UIAlertController(title:"保存しますか？", message: commentTextView.text,
+    preferredStyle: .alert)
+        //preferredStyle他のバージョン
+        
+        //OKボタンをアラートオブジェクトに追加
+        //
+        
+        alert.addAction(UIAlertAction(title: "NG", style: .cancel, handler:  nil))
+//        dismiss(animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in self.saveRe()}))
+        //handlerはOKボタンが押された時にしたい処理を書く
+        //アラートを画面に表示する
+        present(alert,animated: true)
+        //presentで表示する
+        
+        
+    }
+    
+    func saveRe(){
+        //DB書き込み処理
+        print("データの書き込み開始")
+        try! realm.write {
+             let recordInfo1 = RecordInfo()
+            recordInfo1.recordGoal = recordToday.goalList[goalIndex]["goal"] as! String
+            recordInfo1.recordComment = commentTextView.text
+            recordInfo1.achieveRate = rate[rateIndex]
+           print("データ書き込み中")
+            print(recordInfo1)
         }
+     print("データ書き込み完了")
+        //まずは、同じstororyboard内であることをここで定義します
+        let storyboard: UIStoryboard = self.storyboard!
+        //ここで移動先のstoryboardを選択
+        let second = storyboard.instantiateViewController(withIdentifier: "Home")
+        //ここが実際に移動するコードとなります
+        self.present(second, animated: true, completion: nil)
+        
+        
+        
     }
-    
+//        func goMypage(){
+//            //まずは、同じstororyboard内であることをここで定義します
+//            let storyboard: UIStoryboard = self.storyboard!
+//            //ここで移動先のstoryboardを選択
+//            let second = storyboard.instantiateViewController(withIdentifier: "myPage")
+//            //ここが実際に移動するコードとなります
+//            self.present(second, animated: true, completion: nil)
+//
+//
+//        }
+//
+//
     
 
 }
+

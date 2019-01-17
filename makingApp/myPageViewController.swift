@@ -8,137 +8,49 @@
 
 import UIKit
 import Charts
+import RealmSwift
+import  SlideMenuControllerSwift
+
 //TODO:データの受け渡し
 //TODO:データに応じて値を変える
 
-let w = UIScreen.main.bounds.size.width
-let h = UIScreen.main.bounds.size.height
-
-class myPageViewController: UIViewController {
-    
+class myPageViewController: UIViewController
+{
     
 
     
-    @IBOutlet weak var monthlyView:PieChartView!
-    @IBOutlet weak var weeklyView: PieChartView!
-    @IBOutlet weak var dailyView: PieChartView!
+    
+    
+    let data:[[Double]] = [[0,1,1,2,3,5,8,13],[10,14,30,44,52,11,22,44]]
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupGraph()
-        setupGrapha2()
-        setupGraph3()
-        //目標追加ボタン
-        let addBtn = UIButton(frame: CGRect(x: w   - 70, y: h - 150 , width: 60, height: 60))
-        addBtn.setTitle("+", for: UIControl.State())
-        addBtn.setTitleColor(.white, for: UIControl.State())
-        addBtn.backgroundColor = .orange
-        addBtn.layer.cornerRadius = 30.0
-        addBtn.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
-        view.addSubview(addBtn)
-
         
+        let rect = CGRect(x:10, y: 50, width: 350, height: self.view.frame.height - 70)
+        
+        let chartView = LineChartView(frame: rect)
+        
+        var entries = [[ChartDataEntry]]()
+        var dataSets = [LineChartDataSet]()
+        
+        for i in 0 ..< data.count{
+            //空の配列を追加する
+            entries.append([ChartDataEntry]())
+            for (j, d) in data[i].enumerated() {
+                entries[i].append(ChartDataEntry(x: Double(j), y: d ))
+            }
+            let dataSet = LineChartDataSet(values: entries[i], label: "data\(i)")
+            dataSets.append(dataSet)
+        }
+        
+        //chartView.data = LineChartData(dataSet: dataSet)　→ LineChartData(dataSets: dataSets as! [IChartDataSet])
+        chartView.data = LineChartData(dataSets: dataSets as! [IChartDataSet])
+        
+        self.view.addSubview(chartView)
         
     }
-    func setupGraph() {
-        //一つ目グラフ
-        monthlyView.usePercentValuesEnabled = true
-        let values: [Double] = [23, 45, 10,66,78]
-        let date : [Double] = [1,2,3,4,5]
-        var entries: [ChartDataEntry] = Array()
-        print(values.enumerated())
-        for (i, value) in values.enumerated(){
-            entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: self.classForCoder), compatibleWith: nil)))
-            monthlyView.drawHoleEnabled = false
-            print(value)
-            print(date[i])
-            
-            let dataSet = PieChartDataSet(values: entries, label: "ラベル")
-            
-            dataSet.colors = ChartColorTemplates.vordiplom()
-            
-            
-            let chartData = PieChartData(dataSet: dataSet)
-            print("memo:ChartDate",chartData.dataSets)
-             monthlyView.data = chartData
-            
-         
-            
-        }
-    }
-            //グラフ二つ目
-        func setupGrapha2(){
-            weeklyView.usePercentValuesEnabled = true
-            let values: [Double] = [10, 50, 1, 1, 1]
-            let date : [Double] = [1,2,3,4,5]
-            var entries: [ChartDataEntry] = Array()
-            for (i, value) in values.enumerated(){
-                entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: self.classForCoder), compatibleWith: nil)))
-                let dataSet = PieChartDataSet(values: entries, label: "ラベル")
-                
-                dataSet.colors = ChartColorTemplates.vordiplom()
-                
-                
-                let chartData = PieChartData(dataSet: dataSet)
-                print("memo:ChartDate",chartData.dataSets)
-                weeklyView.data = chartData
-               
-            }
-        }
-                
-                //グラフ三つ目
-            func setupGraph3(){
-                dailyView.usePercentValuesEnabled = true
-                let values: [Double] = [0, 1, 80, 10, 10]
-                let date : [Double] = [1,2,3,4,5]
-                var entries: [ChartDataEntry] = Array()
-                for (i, value) in values.enumerated(){
-                    entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: self.classForCoder), compatibleWith: nil)))
-                    print(value)
-                    print(date[i])
-                    let dataSet = PieChartDataSet(values: entries, label: "ラベル")
-                    
-                    dataSet.colors = ChartColorTemplates.vordiplom()
-                    
-                    
-                    let chartData = PieChartData(dataSet: dataSet)
-                    print("memo:ChartDate",chartData.dataSets)
-                     dailyView.data = chartData
-                    
-            }
-        }
-    //画面遷移(目標登録ページ)
-    @objc func onClick(_: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
-        present(SecondController, animated: true, completion: nil)
-    }
     
-       
-
     
-           
-          
-
-      
-
-   
-    
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
-
 }

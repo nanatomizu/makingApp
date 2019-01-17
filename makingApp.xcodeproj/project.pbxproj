@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512E7CC921F0AB4B0003D476 /* usuful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E7CC821F0AB4B0003D476 /* usuful.swift */; };
 		512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */; };
 		512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */; };
+		512F529721EF4CD600D21F75 /* 1111.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F529621EF4CD600D21F75 /* 1111.png */; };
+		5131D4D321EEB72B007E6CD0 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */; };
 		51382A1A21EB2FFA00672D7E /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51382A1921EB2FFA00672D7E /* RealmData.swift */; };
 		514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3321CA87CD00594B68 /* calenderViewController.swift */; };
 		514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3521CA8ECC00594B68 /* settingViewController.swift */; };
@@ -32,7 +35,6 @@
 		51C8047A21CA61D5005D71E9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047921CA61D4005D71E9 /* setting.png */; };
 		51C8047E21CA66F5005D71E9 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 51C8047D21CA66F5005D71E9 /* record.png */; };
 		51EB068E21CBD0CA007AD545 /* setGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */; };
-		51EB069021CBD76A007AD545 /* recordYourVoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */; };
 		51EB069221CE090B007AD545 /* checkResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB069121CE090B007AD545 /* checkResultViewController.swift */; };
 		51F1535821CF712500AF92FF /* favoriteQuotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */; };
 		7B039FC6D07707F208F3E0DA /* Pods_makingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */; };
@@ -40,8 +42,11 @@
 
 /* Begin PBXFileReference section */
 		4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		512E7CC821F0AB4B0003D476 /* usuful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usuful.swift; sourceTree = "<group>"; };
 		512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setGoalFirstViewController.swift; sourceTree = "<group>"; };
 		512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
+		512F529621EF4CD600D21F75 /* 1111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1111.png; sourceTree = "<group>"; };
+		5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		51382A1921EB2FFA00672D7E /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 		514A7B3321CA87CD00594B68 /* calenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calenderViewController.swift; sourceTree = "<group>"; };
 		514A7B3521CA8ECC00594B68 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +72,6 @@
 		51C8047921CA61D4005D71E9 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		51C8047D21CA66F5005D71E9 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalViewController.swift; sourceTree = "<group>"; };
-		51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordYourVoiceViewController.swift; sourceTree = "<group>"; };
 		51EB069121CE090B007AD545 /* checkResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkResultViewController.swift; sourceTree = "<group>"; };
 		51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoriteQuotationViewController.swift; sourceTree = "<group>"; };
 		8AE4EEB948E3577F0B395AFC /* Pods-makingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-makingApp/Pods-makingApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,14 +128,17 @@
 				51C8047D21CA66F5005D71E9 /* record.png */,
 				51C8047121CA605D005D71E9 /* home.png */,
 				5157483321EC76CA005CA86D /* star.png */,
+				512F529621EF4CD600D21F75 /* 1111.png */,
+				5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */,
 				51B32FEA21C8CBB2007D6462 /* ViewController.swift */,
 				51EB069121CE090B007AD545 /* checkResultViewController.swift */,
 				51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */,
+				51382A1921EB2FFA00672D7E /* RealmData.swift */,
+				512E7CC821F0AB4B0003D476 /* usuful.swift */,
 				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
 				514C515821E208CB003D62AF /* notificationViewController.swift */,
 				5163FF4A21EA3F2900049171 /* homeViewController.swift */,
 				512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */,
-				51382A1921EB2FFA00672D7E /* RealmData.swift */,
 				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
 				5164C8AB21ECCC130079BF9A /* meigenRealm.swift */,
 				51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */,
@@ -139,7 +146,6 @@
 				512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */,
 				514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */,
 				514A7B3521CA8ECC00594B68 /* settingViewController.swift */,
-				51EB068F21CBD76A007AD545 /* recordYourVoiceViewController.swift */,
 				514A7B3F21CB666700594B68 /* recordPageViewController.swift */,
 				51B32FF221C8CBB5007D6462 /* Assets.xcassets */,
 				51B32FF421C8CBB5007D6462 /* LaunchScreen.storyboard */,
@@ -224,6 +230,7 @@
 				51C8047A21CA61D5005D71E9 /* setting.png in Resources */,
 				51C8047E21CA66F5005D71E9 /* record.png in Resources */,
 				51B32FF321C8CBB5007D6462 /* Assets.xcassets in Resources */,
+				512F529721EF4CD600D21F75 /* 1111.png in Resources */,
 				51C8047621CA613F005D71E9 /* myPage.png in Resources */,
 				51C8045A21CA3097005D71E9 /* Main.storyboard in Resources */,
 			);
@@ -268,6 +275,7 @@
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -278,6 +286,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -304,10 +313,11 @@
 				514A7B3821CA944F00594B68 /* settingDetailsViewController.swift in Sources */,
 				51F1535821CF712500AF92FF /* favoriteQuotationViewController.swift in Sources */,
 				512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */,
-				51EB069021CBD76A007AD545 /* recordYourVoiceViewController.swift in Sources */,
 				51382A1A21EB2FFA00672D7E /* RealmData.swift in Sources */,
+				512E7CC921F0AB4B0003D476 /* usuful.swift in Sources */,
 				514A7B4021CB666700594B68 /* recordPageViewController.swift in Sources */,
 				514A7B3A21CA9BF100594B68 /* quotationViewController.swift in Sources */,
+				5131D4D321EEB72B007E6CD0 /* UIColorHex.swift in Sources */,
 				51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */,
 				514A7B3C21CAA12900594B68 /* myPageViewController.swift in Sources */,
 			);

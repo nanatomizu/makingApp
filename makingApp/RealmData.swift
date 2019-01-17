@@ -64,6 +64,46 @@ class GoalFirstInfo: Object {
     }
 }
 
+class RecordInfo:Object{
+    @objc dynamic var recordGoal = String()
+    @objc dynamic var recordComment = String()
+    @objc dynamic var achieveRate = Int()
+    //値と日付セットの配列で保存する
+    var recordList = [NSDictionary]()
+
+func creat(recordGoal:String,recordComment:String,achieveRate:Int){
+    let realm = try!Realm()
+    
+    try! realm.write {
+        let recordInfo = RecordInfo()
+        recordInfo.recordGoal = recordGoal
+        recordInfo.recordComment = recordComment
+        recordInfo.achieveRate = achieveRate
+        realm.add(recordInfo)
+    }
+}
+func readAll(){
+    recordList = []
+    let realm = try! Realm()
+    let recordInfo = realm.objects(RecordInfo.self)
+    for value in recordInfo {
+        let records = ["recordGoal":value.recordGoal,"recordComment":value.recordComment,"achieveRate":value.achieveRate] as NSDictionary
+        
+        self.recordList.append(records)
+    }
+}
+    //更新のための関数、日付と達成度の値を、上の配列の保存するように関数を書く
+    //読み込み方は登録されてるデータの中から任意のデータを取り出す方法filter ー＞　値と日付データを取り出す処理
+}
+class ForGraphList:Object{
+    let list = List<RecordInfo>()
+}
+
+
+
+
+
+
 class FavoritesQuotation: Object {
     @objc dynamic var favorites = Bool()
     

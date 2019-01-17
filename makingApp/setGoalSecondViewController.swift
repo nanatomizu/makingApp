@@ -24,14 +24,14 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
     
     let w = UIScreen.main.bounds.size.width
     let h = UIScreen.main.bounds.size.height
-
+    
     
     @IBOutlet weak var monthGoalTextView: UITextField!
     @IBOutlet weak var dayGoalTextView: UITextField!
     @IBOutlet weak var timeSelecterTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-       monthGoalTextView.text = ""
+        monthGoalTextView.text = ""
         dayGoalTextView.text = ""
         timeSelecterTextField.text = ""
         
@@ -39,11 +39,11 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //日付フィールドの設定
-                dateFormat.dateFormat = "hh時mm分"
+        dateFormat.dateFormat = "hh時mm分"
         //        notificationTimeTextField.text = dateFormat.string(from: nowDate as Date)
-       timeSelecterTextField.delegate = self
+        timeSelecterTextField.delegate = self
         dateFormat.dateStyle = .none
         dateFormat.timeStyle = .short
         dateFormat.locale = Locale(identifier: "ja_JP")
@@ -88,24 +88,24 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
         print(dateFormat.dateFormat)
         print(timeSelecterTextField.text!)
         //指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
-//        self.performSegue(withIdentifier: "nextNotification"
-//            , sender:nil)
+        //        self.performSegue(withIdentifier: "nextNotification"
+        //            , sender:nil)
     }
-
+    
     @IBAction func btnNextPage(_ sender: Any) {
-//        goToNextPage()
+        //        goToNextPage()
         
-        }
+    }
     func goToNextPage(){
-//        指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
-//        self.performSegue(withIdentifier: "nextNotification"
-//            , sender:nil)
+        //        指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
+        //        self.performSegue(withIdentifier: "nextNotification"
+        //            , sender:nil)
         //        //まずは、同じstororyboard内であることをここで定義します
-                let storyboard: UIStoryboard = self.storyboard!
+        let storyboard: UIStoryboard = self.storyboard!
         //        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
-                let second = storyboard.instantiateViewController(withIdentifier: "Nitification")
-                //ここが実際に移動するコードとなります
-                self.present(second, animated: true, completion: nil)
+        let second = storyboard.instantiateViewController(withIdentifier: "Nitification")
+        //ここが実際に移動するコードとなります
+        self.present(second, animated: true, completion: nil)
         
         
     }
@@ -122,13 +122,13 @@ class setGoalSecondViewController: UIViewController,UITextFieldDelegate {
             nVC.dayTime = timeSelecterTextField.text
         }
     }
-   
     
-
-   
-        
-        
-        
+    
+    
+    
+    
+    
+    
     
     
     @IBAction func endMonth(_ sender: Any) {
