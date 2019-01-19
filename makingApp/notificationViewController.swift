@@ -26,7 +26,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     
     //変数を宣言する
     //今日の日付を代入
-//    let nowDate = NSDate()
+    let nowDate = NSDate()
     let dateFormat = DateFormatter()
     let inputDatePicker = UIDatePicker()
     

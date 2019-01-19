@@ -179,8 +179,6 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         scrollView.addSubview(timeLabel)
         scrollView.addSubview(detailLabel)
     scrollView.addSubview(goalDetailTextView)
-        
-
      self.view.addSubview(scrollView)
         backGroundColor()
         

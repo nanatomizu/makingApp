@@ -68,10 +68,11 @@ class RecordInfo:Object{
     @objc dynamic var recordGoal = String()
     @objc dynamic var recordComment = String()
     @objc dynamic var achieveRate = Int()
+    @objc dynamic var dayRecord = String()
     //値と日付セットの配列で保存する
     var recordList = [NSDictionary]()
 
-func creat(recordGoal:String,recordComment:String,achieveRate:Int){
+    func creat(recordGoal:String,recordComment:String,achieveRate:Int,dayRecord:String){
     let realm = try!Realm()
     
     try! realm.write {
@@ -79,6 +80,7 @@ func creat(recordGoal:String,recordComment:String,achieveRate:Int){
         recordInfo.recordGoal = recordGoal
         recordInfo.recordComment = recordComment
         recordInfo.achieveRate = achieveRate
+        recordInfo.dayRecord = dayRecord
         realm.add(recordInfo)
     }
 }
@@ -87,17 +89,49 @@ func readAll(){
     let realm = try! Realm()
     let recordInfo = realm.objects(RecordInfo.self)
     for value in recordInfo {
-        let records = ["recordGoal":value.recordGoal,"recordComment":value.recordComment,"achieveRate":value.achieveRate] as NSDictionary
+        let records = ["recordGoal":value.recordGoal,"recordComment":value.recordComment,"achieveRate":value.achieveRate, "dayRecord":value.dayRecord] as NSDictionary
         
         self.recordList.append(records)
     }
 }
+    func readByDay(){
+        let  date = Date()
+        let tmpDate = Calendar(identifier: .gregorian)
+        let year = tmpDate.component(.year, from: date)
+        let mmonth = tmpDate.component(.month, from: date)
+        let dday = tmpDate.component(.day, from: date)
+        let m = String(format: "%02d", mmonth)
+        let d = String(format: "%02d", dday)
+                let da = "\(year)年\(m)月\(d)日"
+
+        
+        //スケジュール取得
+        recordList = []
+        let realm = try! Realm()
+        var result = realm.objects(RecordInfo.self)
+        result = result.filter("dayRecord = '\(da)'")
+
+        for ev in result {
+            let results = ["recordGoal": recordInfo.recordGoal,"recordComment":recordInfo.recordComment,"achieveRate":recordInfo.achieveRate] as NSDictionary
+            self.recordList.append(results)
+        }
+
+    }
+    
+    
+    
+    
+    func deleteAll(){
+        let realm = try!Realm()
+        try! realm.write(){
+            realm.delete(realm.objects(RecordInfo.self))
+        }
+    }
+
     //更新のための関数、日付と達成度の値を、上の配列の保存するように関数を書く
     //読み込み方は登録されてるデータの中から任意のデータを取り出す方法filter ー＞　値と日付データを取り出す処理
 }
-class ForGraphList:Object{
-    let list = List<RecordInfo>()
-}
+
 
 
 
@@ -136,3 +170,4 @@ class FavoritesQuotation: Object {
     
     
 }
+

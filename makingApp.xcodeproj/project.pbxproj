@@ -12,6 +12,7 @@
 		512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */; };
 		512F529721EF4CD600D21F75 /* 1111.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F529621EF4CD600D21F75 /* 1111.png */; };
 		5131D4D321EEB72B007E6CD0 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */; };
+		5137F29721F1BD3E00C08527 /* Flow in Resources */ = {isa = PBXBuildFile; fileRef = 5137F29621F1BD3E00C08527 /* Flow */; };
 		51382A1A21EB2FFA00672D7E /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51382A1921EB2FFA00672D7E /* RealmData.swift */; };
 		514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3321CA87CD00594B68 /* calenderViewController.swift */; };
 		514A7B3621CA8ECC00594B68 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A7B3521CA8ECC00594B68 /* settingViewController.swift */; };
@@ -47,6 +48,7 @@
 		512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
 		512F529621EF4CD600D21F75 /* 1111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1111.png; sourceTree = "<group>"; };
 		5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		5137F29621F1BD3E00C08527 /* Flow */ = {isa = PBXFileReference; lastKnownFileType = text; path = Flow; sourceTree = "<group>"; };
 		51382A1921EB2FFA00672D7E /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 		514A7B3321CA87CD00594B68 /* calenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calenderViewController.swift; sourceTree = "<group>"; };
 		514A7B3521CA8ECC00594B68 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				51C8045921CA3097005D71E9 /* Main.storyboard */,
 				51B32FE821C8CBB2007D6462 /* AppDelegate.swift */,
 				51C8046921CA5ECD005D71E9 /* meigen.png */,
+				5137F29621F1BD3E00C08527 /* Flow */,
 				51C8047521CA613F005D71E9 /* myPage.png */,
 				51C8047921CA61D4005D71E9 /* setting.png */,
 				51C8047D21CA66F5005D71E9 /* record.png */,
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51B32FF621C8CBB5007D6462 /* LaunchScreen.storyboard in Resources */,
+				5137F29721F1BD3E00C08527 /* Flow in Resources */,
 				51C8046A21CA5ECD005D71E9 /* meigen.png in Resources */,
 				5157483421EC76CB005CA86D /* star.png in Resources */,
 				51C8047221CA605D005D71E9 /* home.png in Resources */,

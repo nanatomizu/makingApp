@@ -20,6 +20,13 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
     
     var goalIndex = -1
     var rateIndex = -1
+    let dateFormatter = DateFormatter()
+   
+//    a.timeSttle = .none
+//    a.dateStyle = .long
+//    a.locale = Locale(identifier: "ja_JP")
+//    let now = Date()
+//    print(a.string(from: now)) // 平成29年8月13日日曜日 16時29分05秒 日本標準時
     
     
     @IBOutlet weak var goalPickerView: UIPickerView!
@@ -37,7 +44,15 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
           goalPickerView.tag = 1
         ratePickerView.tag = 2
         recordToday.readAll()
-        
+       
+        dateFormatter.timeStyle = .full
+        dateFormatter.dateStyle = .full
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        let now = Date()
+        let date = dateFormatter.string(from: Date())
+        print(dateFormatter.string(from: now)) // 平成29年8月13日日曜日 16時29分05秒 日本標準時
+        print(date)
         //commentTextViewの話
         // 枠のカラー
         commentTextView.layer.borderColor = UIColor.gray.cgColor
@@ -164,14 +179,24 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
     func saveRe(){
         //DB書き込み処理
         print("データの書き込み開始")
+//        try! realm.write {
+//             let recordInfo1 = RecordInfo()
+//            recordInfo1.recordGoal = recordToday.goalList[goalIndex]["goal"] as! String
+//            recordInfo1.recordComment = commentTextView.text
+//            recordInfo1.achieveRate = rate[rateIndex]
+//           print("データ書き込み中")
+//            print(recordInfo1)
+//        }
+        let date = dateFormatter.string(from: Date())
+        
         try! realm.write {
-             let recordInfo1 = RecordInfo()
-            recordInfo1.recordGoal = recordToday.goalList[goalIndex]["goal"] as! String
-            recordInfo1.recordComment = commentTextView.text
-            recordInfo1.achieveRate = rate[rateIndex]
-           print("データ書き込み中")
-            print(recordInfo1)
+            //日付表示の内容とスケジュール入力の内容が書き込まれる。
+            let recordInfos = [RecordInfo(value: ["recordGoal":recordToday.goalList[goalIndex]["goal"] as! String, "recordComment": commentTextView.text,"achieveRate":rate[rateIndex],"dayRecord":date])]
+            realm.add(recordInfos)
+            print("データ書き込み中")
+            print(recordInfos)
         }
+        
      print("データ書き込み完了")
         //まずは、同じstororyboard内であることをここで定義します
         let storyboard: UIStoryboard = self.storyboard!
@@ -183,19 +208,6 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
         
         
     }
-//        func goMypage(){
-//            //まずは、同じstororyboard内であることをここで定義します
-//            let storyboard: UIStoryboard = self.storyboard!
-//            //ここで移動先のstoryboardを選択
-//            let second = storyboard.instantiateViewController(withIdentifier: "myPage")
-//            //ここが実際に移動するコードとなります
-//            self.present(second, animated: true, completion: nil)
-//
-//
-//        }
-//
-//
-    
 
 }
 

@@ -147,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFp-hP-PzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3940" y="-1086"/>
+            <point key="canvasLocation" x="-3697" y="-1871"/>
         </scene>
         <!--meigen-->
         <scene sceneID="2fN-rf-0Om">
@@ -230,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9q-82-ms3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1284" y="-1821"/>
+            <point key="canvasLocation" x="-1527" y="-1821"/>
         </scene>
         <!--Record Page View Controller-->
         <scene sceneID="RM1-1g-MD5">
@@ -310,36 +310,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-uV-Fix" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="55" width="375" height="746"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3d-uV-Fix" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="55" width="375" height="437"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyyy年 mm月"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="Sgd-gr-W0E" id="35Z-DR-OUc"/>
                                     <outlet property="delegate" destination="Sgd-gr-W0E" id="FWe-FP-BNO"/>
                                 </connections>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-oP-Bos">
+                                <rect key="frame" x="42" y="575" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.95984965560000002" green="0.0" blue="0.1704357457" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PHo-BX-J6y">
+                                <rect key="frame" x="42" y="627" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tzt-gA-88B">
+                                <rect key="frame" x="42" y="682" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.33121201929999999" green="1" blue="0.4931964667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ih-hb-eNR">
+                                <rect key="frame" x="42" y="522" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-Us-Yvj">
+                                <rect key="frame" x="302" y="481" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnDelete:" destination="Sgd-gr-W0E" eventType="touchUpInside" id="Mdc-Q4-lMJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="W3d-uV-Fix" firstAttribute="top" secondItem="cfV-Xf-bFV" secondAttribute="top" constant="11" id="50t-Rs-tek"/>
-                            <constraint firstAttribute="trailing" secondItem="W3d-uV-Fix" secondAttribute="trailing" id="KwL-ko-VP3"/>
-                            <constraint firstItem="W3d-uV-Fix" firstAttribute="leading" secondItem="Uf2-xT-0XQ" secondAttribute="leading" id="b7M-Oa-4jw"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="W3d-uV-Fix" secondAttribute="bottom" constant="-23" id="oeg-Ld-EqL"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cfV-Xf-bFV"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Lsh-Vj-xZW"/>
                     <connections>
                         <outlet property="calender" destination="W3d-uV-Fix" id="GX7-OQ-2CC"/>
+                        <outlet property="commentLabel" destination="PHo-BX-J6y" id="7se-V5-7bk"/>
+                        <outlet property="dayLabel" destination="3ih-hb-eNR" id="usS-7p-dK7"/>
+                        <outlet property="goalLabel" destination="9iG-oP-Bos" id="mX3-zU-Psn"/>
+                        <outlet property="rateLabel" destination="Tzt-gA-88B" id="znm-h1-p2V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6P-pC-0hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362" y="-1821"/>
+            <point key="canvasLocation" x="-2385" y="-1170"/>
         </scene>
         <!--settings-->
         <scene sceneID="I8Q-iX-Oef">
@@ -783,6 +823,7 @@
                         <segue destination="1U2-q2-IQh" kind="relationship" relationship="viewControllers" id="6J4-LS-Eci"/>
                         <segue destination="pOT-6Z-yTM" kind="relationship" relationship="viewControllers" id="XuE-Gd-6Ni"/>
                         <segue destination="9Zw-Yb-7lg" kind="relationship" relationship="viewControllers" id="UYP-kC-WQm"/>
+                        <segue destination="Sgd-gr-W0E" kind="relationship" relationship="viewControllers" id="sx8-2e-il2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBV-0j-xXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
