@@ -1,5 +1,5 @@
 //
-//  settingDetailsViewController.swift
+//  myPageViewController.swift
 //  makingApp
 //
 //  Created by 水谷七渡 on 2018/12/19.
@@ -7,46 +7,75 @@
 //
 
 import UIKit
+import Charts
+import RealmSwift
+import  SlideMenuControllerSwift
 
-class settingDetailsViewController: UIViewController {
-    
-//    TODO:settingList内の説明を配列組んで書く
-    
-     var settingList = ["このアプリについて","ライセンス","通知設定"]
-    var detailsetting = ["このアプリは三日坊主に悩むあなた、目標に向かって頑張りたいあなたのためのアプリです。","seven.license","通知を受け取るor受け取らない"]
-    
-    @IBOutlet weak var settingDetailsTextView: UITextView!
-    var selectedIndex = -1
+let recordInfoGraph = RecordInfo()
 
+//TODO:データの受け渡し
+//TODO:データに応じて値を変える
+//日付と達成率のデータを取ってくる->配列にセットする->ひ配列に沿って表示させる
+//
+
+class myPageViewController: UIViewController
+{
+    
+
+    
+
+    let data:[[Double]] = [[0,1,1,2,3,5,8,13],[10,14,30,44,52,11,22,44],[20,30,40,50,60,70,80,90,100]]
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        backGroundColor()
         
-        // Do any additional setup after loading the view.
+        recordInfoGraph.readGraphAll()
+        print("recordInfoGraph.recordList\(recordInfoGraph.recordList)")
+      
+       
+       
+        
+         backGroundColor()
+        
+        let rect = CGRect(x:20, y: 50, width: 350, height: self.view.frame.height - 350)
+        
+        let chartView = LineChartView(frame: rect)
+         chartView.backgroundColor = UIColor.lightGray
+       
+        
+        
+        var entries = [[ChartDataEntry]]()
+        var dataSets = [LineChartDataSet]()
+        
+        
+        for i in 0 ..< data.count{
+            //空の配列を追加する
+            entries.append([ChartDataEntry]())
+            for (j, d) in data[i].enumerated() {
+                entries[i].append(ChartDataEntry(x: Double(j), y: Double(d) ))
+            }
+            let dataSet = LineChartDataSet(values: entries[i], label: "data\(i)")
+            dataSets.append(dataSet)
+            
+        }
+        
+        //chartView.data = LineChartData(dataSet: dataSet)　→ LineChartData(dataSets: dataSets as! [IChartDataSet])
+        chartView.data = LineChartData(dataSets: dataSets as! [IChartDataSet])
+        
+       
+        self.view.addSubview(chartView)
+        
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        //前の画面で選択された行番号を表示
-        print("選択された行番号：\(selectedIndex)")
-        
-        settingDetailsTextView.text =
-            detailsetting[selectedIndex]
-        
-        
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
 }
-}
-extension settingDetailsViewController {
+
+
+extension myPageViewController{
+    
     func backGroundColor() {
         //グラデーションをつける
         let gradientLayer = CAGradientLayer()
@@ -78,8 +107,5 @@ extension settingDetailsViewController {
         
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
-        //tableviewの背景透明にしてます
-        settingDetailsTextView.backgroundColor = UIColor.clear
-        
     }
 }

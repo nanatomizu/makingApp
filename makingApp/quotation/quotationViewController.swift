@@ -36,6 +36,7 @@ class quotationViewController: UIViewController {
      showWords()
        
         backGroundColor()
+        //textviewの背景透明にしてます
        quoteTextView.backgroundColor = UIColor.clear
     }
     

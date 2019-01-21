@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		510E944021F5F3230066EAFE /* showResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510E943F21F5F3230066EAFE /* showResultViewController.swift */; };
 		512E7CC921F0AB4B0003D476 /* usuful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E7CC821F0AB4B0003D476 /* usuful.swift */; };
 		512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */; };
 		512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */; };
@@ -24,6 +25,7 @@
 		5157483421EC76CB005CA86D /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5157483321EC76CA005CA86D /* star.png */; };
 		5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163FF4A21EA3F2900049171 /* homeViewController.swift */; };
 		5164C8AC21ECCC130079BF9A /* meigenRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5164C8AB21ECCC130079BF9A /* meigenRealm.swift */; };
+		51668B0921F31E8400DB84CD /* showGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51668B0821F31E8400DB84CD /* showGoalListViewController.swift */; };
 		51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FE821C8CBB2007D6462 /* AppDelegate.swift */; };
 		51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEA21C8CBB2007D6462 /* ViewController.swift */; };
 		51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEF21C8CBB2007D6462 /* makingApp.xcdatamodeld */; };
@@ -43,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		510E943F21F5F3230066EAFE /* showResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showResultViewController.swift; sourceTree = "<group>"; };
 		512E7CC821F0AB4B0003D476 /* usuful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usuful.swift; sourceTree = "<group>"; };
 		512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setGoalFirstViewController.swift; sourceTree = "<group>"; };
 		512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		5157483321EC76CA005CA86D /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		5163FF4A21EA3F2900049171 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		5164C8AB21ECCC130079BF9A /* meigenRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meigenRealm.swift; sourceTree = "<group>"; };
+		51668B0821F31E8400DB84CD /* showGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showGoalListViewController.swift; sourceTree = "<group>"; };
 		51B32FE521C8CBB2007D6462 /* makingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B32FE821C8CBB2007D6462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51B32FEA21C8CBB2007D6462 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		51668B0521F31D3800DB84CD /* makeGoal */ = {
+			isa = PBXGroup;
+			children = (
+				512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */,
+				512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */,
+				514C515821E208CB003D62AF /* notificationViewController.swift */,
+			);
+			path = makeGoal;
+			sourceTree = "<group>";
+		};
+		51668B0621F31D4700DB84CD /* myPage */ = {
+			isa = PBXGroup;
+			children = (
+				51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */,
+				510E943F21F5F3230066EAFE /* showResultViewController.swift */,
+				514A7B3321CA87CD00594B68 /* calenderViewController.swift */,
+				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
+			);
+			path = myPage;
+			sourceTree = "<group>";
+		};
+		51668B0721F31E3800DB84CD /* quotation */ = {
+			isa = PBXGroup;
+			children = (
+				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
+			);
+			path = quotation;
+			sourceTree = "<group>";
+		};
 		51B32FDC21C8CBB2007D6462 = {
 			isa = PBXGroup;
 			children = (
@@ -134,22 +167,19 @@
 				512F529621EF4CD600D21F75 /* 1111.png */,
 				5131D4D221EEB72B007E6CD0 /* UIColorHex.swift */,
 				51B32FEA21C8CBB2007D6462 /* ViewController.swift */,
-				51EB069121CE090B007AD545 /* checkResultViewController.swift */,
-				51F1535721CF712500AF92FF /* favoriteQuotationViewController.swift */,
+				51668B0821F31E8400DB84CD /* showGoalListViewController.swift */,
+				514A7B3F21CB666700594B68 /* recordPageViewController.swift */,
+				51668B0521F31D3800DB84CD /* makeGoal */,
+				51668B0621F31D4700DB84CD /* myPage */,
 				51382A1921EB2FFA00672D7E /* RealmData.swift */,
+				51668B0721F31E3800DB84CD /* quotation */,
 				512E7CC821F0AB4B0003D476 /* usuful.swift */,
-				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
-				514C515821E208CB003D62AF /* notificationViewController.swift */,
-				5163FF4A21EA3F2900049171 /* homeViewController.swift */,
-				512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */,
-				514A7B3921CA9BF100594B68 /* quotationViewController.swift */,
 				5164C8AB21ECCC130079BF9A /* meigenRealm.swift */,
 				51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */,
-				514A7B3321CA87CD00594B68 /* calenderViewController.swift */,
-				512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */,
 				514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */,
 				514A7B3521CA8ECC00594B68 /* settingViewController.swift */,
-				514A7B3F21CB666700594B68 /* recordPageViewController.swift */,
+				5163FF4A21EA3F2900049171 /* homeViewController.swift */,
+				51EB069121CE090B007AD545 /* checkResultViewController.swift */,
 				51B32FF221C8CBB5007D6462 /* Assets.xcassets */,
 				51B32FF421C8CBB5007D6462 /* LaunchScreen.storyboard */,
 				51B32FF721C8CBB5007D6462 /* Info.plist */,
@@ -307,6 +337,7 @@
 				514C515921E208CB003D62AF /* notificationViewController.swift in Sources */,
 				5164C8AC21ECCC130079BF9A /* meigenRealm.swift in Sources */,
 				5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */,
+				51668B0921F31E8400DB84CD /* showGoalListViewController.swift in Sources */,
 				514A7B3421CA87CD00594B68 /* calenderViewController.swift in Sources */,
 				51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */,
 				51EB069221CE090B007AD545 /* checkResultViewController.swift in Sources */,
@@ -319,6 +350,7 @@
 				512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */,
 				51382A1A21EB2FFA00672D7E /* RealmData.swift in Sources */,
 				512E7CC921F0AB4B0003D476 /* usuful.swift in Sources */,
+				510E944021F5F3230066EAFE /* showResultViewController.swift in Sources */,
 				514A7B4021CB666700594B68 /* recordPageViewController.swift in Sources */,
 				514A7B3A21CA9BF100594B68 /* quotationViewController.swift in Sources */,
 				5131D4D321EEB72B007E6CD0 /* UIColorHex.swift in Sources */,

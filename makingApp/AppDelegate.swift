@@ -7,19 +7,35 @@
 //
 
 import UIKit
+import UserNotifications
+import RealmSwift
+
+let goalNotification = GoalFirstInfo()
+
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
-       
-        
+    
+    //ユーザー通知のため
+    let center = UNUserNotificationCenter.current()
+    
         //アプリが起動された時に発動するメソッド
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            // create viewController code...
+
+            center.requestAuthorization(options: [.alert,.sound,.badge]){
+                                   (granted, _)in
+                if granted {
+                    self.center.delegate = self as! UNUserNotificationCenterDelegate
+                }
+            }
+//                    //アプリ起動時のユーザーに対して通知の許可を求める文
+//                    application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.sound,UIUserNotificationType.alert,UIUserNotificationType.badge], categories: nil))
+            
+//            center.delegate = self
+            
             
          
             print("アプリ起動したよ")
@@ -28,29 +44,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
+        
+        }
 
+    //アプリがバックグラウンド
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
+         goalNotification.readAll()
 
+            //通知を送る日時の設定
+            var dateComponents = DateComponents()
+            dateComponents.hour = 9 //9時とdataComponentsの中に入っている状態
+            print(dateComponents)
+            
+            //trueは設定した時間がくるたびに通知　falseは一回のみ
+            let calenderTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            //通知の内容について
+            let content = UNMutableNotificationContent()
+            content.title = "克己録"
+            content.subtitle =  "ああああ"
+            content.body = ""
+            //画像について
+            if let path = Bundle.main.path(forResource: "１１１１", ofType: "png"){
+                content.attachments = [try! UNNotificationAttachment(identifier: "ID", url: URL(fileURLWithPath: path), options: nil)]
+            }
+            
+            let calenderRequest = UNNotificationRequest(identifier: "alert", content: content, trigger: calenderTrigger)
+            
+            center.add(calenderRequest, withCompletionHandler: nil)
+            
+        }
+
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
+        }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
+        }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
         
     }
 
   
 }
 
+extension AppDelegate:UNUserNotificationCenterDelegate{
+    //通知がタップされ、アプリが開いた時に呼ばれる関数
+    func userNotificationCenter(_ center:UNUserNotificationCenter, didReceive
+        response:UNNotificationResponse,withCompletionHandler
+        complentionHandler:() -> Void){
+        print("通知経由でアプリが起動しました")
+    }
+}

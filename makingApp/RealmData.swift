@@ -62,6 +62,12 @@ class GoalFirstInfo: Object {
             realm.delete(realm.objects(GoalFirstInfo.self))
         }
     }
+//    func deletePart(){
+//        let realm = try! Realm()
+//        try! realm.write() {
+//            realm.delete(realm.objects(GoalFirstInfo.self).filter( ))
+//        }
+//    }
 }
 
 class RecordInfo:Object{
@@ -71,6 +77,7 @@ class RecordInfo:Object{
     @objc dynamic var dayRecord = String()
     //値と日付セットの配列で保存する
     var recordList = [NSDictionary]()
+    
 
     func creat(recordGoal:String,recordComment:String,achieveRate:Int,dayRecord:String){
     let realm = try!Realm()
@@ -94,29 +101,35 @@ func readAll(){
         self.recordList.append(records)
     }
 }
-    func readByDay(){
-        let  date = Date()
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: date)
-        let mmonth = tmpDate.component(.month, from: date)
-        let dday = tmpDate.component(.day, from: date)
-        let m = String(format: "%02d", mmonth)
-        let d = String(format: "%02d", dday)
-                let da = "\(year)年\(m)月\(d)日"
 
+func readGraphAll(){
+    recordList = []
+    let realm = try! Realm()
+    let recordInfo = realm.objects(RecordInfo.self)
+    for value in recordInfo {
+        let records = ["recordGoal":value.recordGoal,"achieveRate":value.achieveRate,"dayRecord":value.dayRecord] as NSDictionary
         
-        //スケジュール取得
-        recordList = []
+        self.recordList.append(records)
+    }
+}
+    
+    func readByDay(da:String){
+          recordList = []
         let realm = try! Realm()
         var result = realm.objects(RecordInfo.self)
         result = result.filter("dayRecord = '\(da)'")
 
         for ev in result {
-            let results = ["recordGoal": recordInfo.recordGoal,"recordComment":recordInfo.recordComment,"achieveRate":recordInfo.achieveRate] as NSDictionary
+            let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
             self.recordList.append(results)
         }
 
     }
+
+    func readGraph(){
+        
+    }
+    
     
     
     

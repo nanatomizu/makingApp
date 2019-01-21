@@ -48,7 +48,14 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        goalTextField.tag = 1
+        dateSelecter.tag = 2
+        goalDetailTextView.tag = 1
+        
+        goalTextField.delegate = self
+        dateSelecter.delegate = self
+        goalDetailTextView.delegate = self
         
         //日付フィールドの設定
         dateFormat.dateFormat = "yyyy年MM月dd日"
@@ -186,8 +193,8 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillShow(notification:)),name:UIResponder.keyboardWillShowNotification,object: nil)
+      
+//        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillShow(notification:)),name:UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillHide(notification:)),name:UIResponder.keyboardWillHideNotification,object: nil)
         
         goalTextField.text = ""
@@ -199,8 +206,9 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self,name:UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.removeObserver(self,name:UIResponder.keyboardWillHideNotification,object: nil)
+        scrollView.setContentOffset(scrollView.contentOffset, animated: false)
     }
-    
+
     
     
     //doneボタンを押した時の処理
@@ -209,11 +217,6 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         //キーボードを閉じる
         self.view.endEditing(true)
     }
-    
-    
-    
-    
-    
     
     //完了を押すとピッカーの値を、テキストフィールドに挿入して、ピッカーを閉じる
     @objc func toolBarBtnPush(_ sender: UIBarButtonItem){
@@ -227,7 +230,16 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         print(dateSelecter.text!)
         //    self.performSegue(withIdentifier: "mySegue", sender:nil)
     }
-    
+   
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillShow(notification:)),name:UIResponder.keyboardWillShowNotification,object: nil)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField:UITextField){
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillHide(notification:)),name:UIResponder.keyboardWillHideNotification,object: nil)
+       
+        
+    }
     
     
     @IBAction func clsGoal(_ sender: Any) {
@@ -235,8 +247,14 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     
     
     @IBAction func nextPageBtn(_ sender: UIButton) {
-        //         self.performSegue(withIdentifier: "mySegue", sender:nil)
-        //
+        if goalTextField.text == "" && goalDetailTextView.text == ""{
+           alertGoal()
+        }else if  goalTextField.text == "" || goalDetailTextView.text == ""{
+            alertGoal()
+        
+        }else{
+            self.performSegue(withIdentifier: "mySegue", sender:nil)
+        
     }
     //        //DB書き込み
     //        print("データ書き込み開始")
@@ -261,6 +279,7 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     
     
     //Segueの初期化を通知するメソッドをオーバーライドする。senderにはperformSegue()で渡した値が入る。
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mySegue" {
             let nVC = segue.destination as! setGoalSecondViewController
@@ -269,7 +288,48 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
             nVC.goalDetail = goalDetailTextView.text
         }
     }
+    func alertGoal(){
+        if goalTextField.text == "" && goalDetailTextView.text == ""{
+            let alert = UIAlertController(title:"記入漏れありますよ", message:"ゴールと将来のイメージを入力してください！" ,
+                                          preferredStyle: .alert)
+            //OKボタンをアラートオブジェクトに追加
+            //
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            //handlerはOKボタンが押された時にしたい処理を書く
+            //アラートを画面に表示する
+            present(alert,animated: true)
+            //presentで表示する
+            
+        }else if goalTextField.text == "" {
+        //アラートオブジェクトを作る
+        let alert = UIAlertController(title:"記入漏れありますよ", message:"ゴールを入力してください！" ,
+                                      preferredStyle: .alert)
+            //OKボタンをアラートオブジェクトに追加
+            //
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            //handlerはOKボタンが押された時にしたい処理を書く
+            //アラートを画面に表示する
+            present(alert,animated: true)
+            //presentで表示する
+        }else if goalDetailTextView.text == ""{
+            let alert = UIAlertController(title:"記入漏れありますよ", message:"将来のイメージはなんですか！" ,
+                                          preferredStyle: .alert)
+        
+        //OKボタンをアラートオブジェクトに追加
+        //
+        
+       alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //handlerはOKボタンが押された時にしたい処理を書く
+        //アラートを画面に表示する
+        present(alert,animated: true)
+        //presentで表示する
+        
+        
+    }
     
+ }
     
 }
 //キーボード関連の関数をまとめる。
@@ -277,6 +337,7 @@ extension setGoalFirstViewController{
     
     //キーボードが表示された時に呼ばれる
     @objc func keyboardWillShow(notification: NSNotification) {
+        
         let insertHeight:CGFloat = 250
         scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight + insertHeight)
         let offset = CGPoint(x: 0, y: insertHeight)
@@ -286,8 +347,10 @@ extension setGoalFirstViewController{
     //キーボードが閉じる時に呼ばれる
     @objc func keyboardWillHide(notification: NSNotification) {
         scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight)
+//        scrollView.setContentOffset(scrollView.contentOffset, animated: false)
         print("元の大きさへ")
 }
+    
 
 
 
@@ -295,35 +358,35 @@ extension setGoalFirstViewController{
 
 extension setGoalFirstViewController{
     func backGroundColor() {
-    //グラデーションをつける
-    let gradientLayer = CAGradientLayer()
-    gradientLayer.frame = self.view.bounds
-    
-    //グラデーションさせるカラーの設定
-    //今回は、徐々に色を濃くしていく
-    let color1 = UIColor(red: 1.0 , green: 1.0, blue: 1.0, alpha: 1).cgColor     //白
-    let color2 = UIColor(red: 256/256.0, green: 82/256.0, blue: 0/256.0, alpha: 1).cgColor   //水色
-    
-    //CAGradientLayerにグラデーションさせるカラーをセット
-    gradientLayer.colors = [color1, color2]
-    
-    //グラデーションの開始地点・終了地点の設定
-    //上が白で下が水色
-//    gradientLayer.startPoint = CGPoint.init(x: 0.5, y: 0)
-//    gradientLayer.endPoint = CGPoint.init(x: 0.5 , y:1 )
+        //グラデーションをつける
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        
+        //グラデーションさせるカラーの設定
+        //今回は、徐々に色を濃くしていく
+        let color1 = UIColor(red: 1.0 , green: 1.0, blue: 1.0, alpha: 1).cgColor     //白
+        let color2 = UIColor(red: 256/256.0, green: 82/256.0, blue: 0/256.0, alpha: 1).cgColor   //水色
+        
+        //CAGradientLayerにグラデーションさせるカラーをセット
+        gradientLayer.colors = [color1, color2]
+        
+        //グラデーションの開始地点・終了地点の設定
+        //上が白で下が水色
+        //    gradientLayer.startPoint = CGPoint.init(x: 0.5, y: 0)
+        //    gradientLayer.endPoint = CGPoint.init(x: 0.5 , y:1 )
         //上が赤で下が白
-//        gradientLayer.endPoint = CGPoint.init(x: 0.5, y: 0)
-//        gradientLayer.startPoint = CGPoint.init(x: 0.5 , y:1 )
-    
-    //左が白で右が水色
-    gradientLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
-    gradientLayer.endPoint = CGPoint.init(x: 1 , y:0.5)
-    
-    //左上が白で右下が水色
-//    gradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
-//    gradientLayer.endPoint = CGPoint.init(x: 1 , y:1)
-    
-    //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
-    self.view.layer.insertSublayer(gradientLayer,at:0)
-}
+        //        gradientLayer.endPoint = CGPoint.init(x: 0.5, y: 0)
+        //        gradientLayer.startPoint = CGPoint.init(x: 0.5 , y:1 )
+        
+        //左が白で右が水色
+        gradientLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint.init(x: 1 , y:0.5)
+        
+        //左上が白で右下が水色
+        //    gradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
+        //    gradientLayer.endPoint = CGPoint.init(x: 1 , y:1)
+        
+        //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
+        self.view.layer.insertSublayer(gradientLayer,at:0)
+    }
 }

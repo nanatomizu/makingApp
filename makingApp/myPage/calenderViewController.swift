@@ -12,32 +12,35 @@ import CalculateCalendarLogic
 import RealmSwift
 
 let recordInfo = RecordInfo()
+
 var screenWidth = UIScreen.main.bounds.size.width
 var screenHeight = UIScreen.main.bounds.size.height
 
 class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UITableViewDelegate,UITableViewDataSource{
     
     
-
+let dayLabel:UILabel = UILabel()
     
-    @IBOutlet weak var goalLabel: UITextField!
-    
-    @IBOutlet weak var commentLabel: UITextField!
-    
-    @IBOutlet weak var rateLabel: UITextField!
-    
-    @IBOutlet weak var dayLabel: UITextField!
+   
     
     @IBOutlet weak var calender: FSCalendar!
     
     var tableView :UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         recordInfo.readAll()
         // デリゲートの設定
        calender.delegate = self
         
+        
+        
+        
+        backGroundColor()
     
         
         self.tableView = {
@@ -53,12 +56,19 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             return tableView
             
         }()
+        //tableViewの背景色透明　cell間の線の削除
+        tableView.backgroundColor = UIColor.clear
+        tableView.tableFooterView = UIView()
+        
+        //labelの配置
+        let dayLabel:UILabel = UILabel()
         dayLabel.frame.size = CGSize(width: 72, height: 24)
         dayLabel.center = CGPoint(x: screenWidth / 2, y: 504)
-        dayLabel.backgroundColor = .clear
+        dayLabel.backgroundColor = .white
         dayLabel.font = UIFont.systemFont(ofSize: 60.0)
-        dayLabel.layer.borderColor = UIColor.gray.cgColor
+        dayLabel.layer.borderColor = UIColor.blue.cgColor
 
+        view.addSubview(dayLabel)
         
     }
     
@@ -119,33 +129,43 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         }
         
         return nil
+         print("前のことrecordInfo.recordList:\(recordInfo.recordList)")
     }
     
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
     {
+       
+//        if recordInfo.recordGoal == ""{
+//        //予定がある場合、スケジュールをDBから取得・表示する。
+//        //無い場合、「スケジュールはありません」と表示
+//        let goalLabel:UILabel = UILabel()
+//        goalLabel.text = "A"
+//        goalLabel.textColor = .lightGray
+//        goalLabel.frame = CGRect(x: 20, y: 600, width: screenWidth / 2, height: 24)
+//        view.addSubview(goalLabel)
+//
+//        let commenttextField:UITextField = UITextField()
+//        commenttextField.text = "B"
+//        commenttextField.textColor = .lightGray
+//        goalLabel.frame = CGRect(x: 48, y: 648, width: screenWidth / 2, height: 36)
+//        view.addSubview(commenttextField)
+//
+//        let rateLabel:UILabel = UILabel()
+//        rateLabel.text = "C"
+//        rateLabel.textColor = .lightGray
+//        rateLabel.textColor = .lightGray
+//        rateLabel.frame = CGRect(x: 48, y: 708, width: screenWidth / 2, height: 24)
+//        view.addSubview(rateLabel)
         
         
-        //予定がある場合、スケジュールをDBから取得・表示する。
-        //無い場合、「スケジュールはありません」と表示
+//        }else{
         
-        goalLabel.text = "スケジュールはありません"
-        goalLabel.textColor = .lightGray
-        
-        commentLabel.text = "スケジュールはありません"
-        commentLabel.textColor = .lightGray
-        
-        rateLabel.text = "スケジュールはありません"
-        rateLabel.textColor = .lightGray
-        
-        
-        
-        
-        view.addSubview(dayLabel)
-        view.addSubview(goalLabel)
-        view.addSubview(commentLabel)
-        view.addSubview(rateLabel)
-        
+////        view.addSubview(dayLabel)
+//        view.addSubview(goalLabel)
+//        view.addSubview(commentLabel)
+//        view.addSubview(rateLabel)
+//
         
         
         
@@ -157,56 +177,55 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let day = tmpDate.component(.day, from: date)
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
-        
+        dayLabel.text = "\(m)年\(d)日"
         //realmで登録しているキーと呼び出すときの型と書き方が一致していないとデータを取得できないよ
         let da = "\(year)年\(m)月\(d)日"
-        
-        print("ここから")
-        print(m)
-        print(d)
-        print( "\(year)年\(m)月\(d)日")
-        print("\(m)/\(d)")
-        print("ここまで日付確認")
+//
+//        print("ここから")
+//        print(m)
+//        print(d)
+//        print( "\(year)年\(m)月\(d)日")
+//        print("\(m)/\(d)")
+//        print("ここまで日付確認")
         
         //クリックしたら、日付が表示される。
         //        view.addSubview(tableView)
-        dayLabel.text = "\(m)/\(d)"
-        //        tableView.addSubview(dayLabel)
         
+        recordInfo.readByDay(da:da)
+        
+//        dayLabel.text =
+        //        tableView.addSubview(dayLabel)
+//        print("前のことrecordInfo.recordList:\(recordInfo.recordList)")
         //スケジュール取得
 //        recordInfo.readByDay()
-        recordInfo.recordList = []
-        let realm = try! Realm()
-        var result = realm.objects(RecordInfo.self)
-        result = result.filter("dayRecord = '\(da)'")
-        print(result)
-        for ev in result {
-                        let results = ["recordGoal": recordInfo.recordGoal,"recordComment":recordInfo.recordComment,"achieveRate":recordInfo.achieveRate] as NSDictionary
-                        recordInfo.recordList.append(results)
-
-                        print("これは")
-                        print(recordInfo)
-                        print(recordInfo.recordList)
-                        print(results)
-                        print(ev)
-            print(ev.recordGoal)
-                        print("これ")
-
+//         print("後のことrecordInfo.recordList:\(recordInfo.recordList)")
+//       recordInfo.recordList = []
+//        let realm = try! Realm()
+//        var result = realm.objects(RecordInfo.self)
+//        result = result.filter("dayRecord = '\(da)'")
+//        print(result)
+//        for ev in result {
+//                      let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
+//                        recordInfo.recordList.append(results)
+//
+//                        print("これは")
+//                        print("recordInfo:\(recordInfo)")
+//            print("recordInfo.recordList:\(recordInfo.recordList)")
+//            print("results:\(results)")
+//            print("ev:\(ev)")
+//            print("ev.recordGoal:\(ev.recordGoal)")
+//            print("ev.recordGoal:\(ev.recordGoal)")
+//
+//                        print("これ")
+//
 
                 view.addSubview(tableView)
-//                goalLabel.text = ev.recordGoal
-        goalLabel.text = ev.recordGoal
-        //                commentLabel.text = ev.recordComment
-//                rateLabel.text = "\(String(ev.achieveRate))%"
-                dayLabel.textColor = .black
-                goalLabel.textColor = .black
-                rateLabel.textColor = .black
-                                 view.addSubview(dayLabel)
-                //                view.addSubview(goalLabel)
-                //                view.addSubview(rateLabel)
-                //                view.addSubview(commentLabel)
-           }
-        }
+        print("recordInfo.recordGoal:\(recordInfo.recordGoal)")
+        
+        tableView.reloadData()
+          }
+    
+    
 
 
 
@@ -230,11 +249,58 @@ extension calenderViewController {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //セルの選択解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        //ここに遷移処理を書く
+        let storyboard: UIStoryboard = self.storyboard!
+        
+        let detailInformation = storyboard.instantiateViewController(withIdentifier: "ShowResult") as! showResultViewController
+        detailInformation.goaaaaaaal = recordInfo.recordList[indexPath.row]["recordGoal"] as! String
+        
+        self.present(detailInformation, animated: true, completion: nil)
+
+        
         print("Selected! \(recordInfo.recordList[indexPath.row]["recordGoal"]!)")
         
     }
+    
    
 }
+extension calenderViewController{
+    func backGroundColor() {
+        //グラデーションをつける
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        
+        //グラデーションさせるカラーの設定
+        //今回は、徐々に色を濃くしていく
+        let color1 = UIColor(red: 1.0 , green: 1.0, blue: 1.0, alpha: 1).cgColor     //白
+        let color2 = UIColor(red: 256/256.0, green: 82/256.0, blue: 0/256.0, alpha: 1).cgColor   //水色
+        
+        //CAGradientLayerにグラデーションさせるカラーをセット
+        gradientLayer.colors = [color1, color2]
+        
+        //グラデーションの開始地点・終了地点の設定
+        //上が白で下が水色
+        //    gradientLayer.startPoint = CGPoint.init(x: 0.5, y: 0)
+        //    gradientLayer.endPoint = CGPoint.init(x: 0.5 , y:1 )
+        //上が赤で下が白
+        //        gradientLayer.endPoint = CGPoint.init(x: 0.5, y: 0)
+        //        gradientLayer.startPoint = CGPoint.init(x: 0.5 , y:1 )
+        
+        //左が白で右が水色
+        gradientLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint.init(x: 1 , y:0.5)
+        
+        //左上が白で右下が水色
+        //    gradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
+        //    gradientLayer.endPoint = CGPoint.init(x: 1 , y:1)
+        
+        //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
+        self.view.layer.insertSublayer(gradientLayer,at:0)
+    }
+}
+
 //TODO:データの受け渡し
 //TODO:データを表示する　どの日に何をしたのかを色でわかるように
 //TODO:データの受け取り
