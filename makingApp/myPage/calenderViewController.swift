@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
-import RealmSwift
+import RealmSwift_
 
 let recordInfo = RecordInfo()
 
@@ -19,9 +19,7 @@ var screenHeight = UIScreen.main.bounds.size.height
 class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UITableViewDelegate,UITableViewDataSource{
     
     
-let dayLabel:UILabel = UILabel()
-    
-   
+    let dayLabel:UILabel = UILabel()
     
     @IBOutlet weak var calender: FSCalendar!
     
@@ -36,8 +34,9 @@ let dayLabel:UILabel = UILabel()
         recordInfo.readAll()
         // デリゲートの設定
        calender.delegate = self
-        
-        
+        calender.frame.size = CGSize(width: screenWidth
+            , height:  screenHeight / 2 - 10 )
+        calender.center = CGPoint(x: screenWidth / 2, y: 290 )
         
         
         backGroundColor()
@@ -50,6 +49,8 @@ let dayLabel:UILabel = UILabel()
             tableView.frame.size = CGSize(width: 5 * screenWidth / 6
             , height:screenHeight / 2 )
             tableView.center = CGPoint(x: screenWidth / 2, y: 720 )
+            
+           
             
             tableView.delegate = self
             tableView.dataSource = self
@@ -65,10 +66,12 @@ let dayLabel:UILabel = UILabel()
         dayLabel.frame.size = CGSize(width: 72, height: 24)
         dayLabel.center = CGPoint(x: screenWidth / 2, y: 504)
         dayLabel.backgroundColor = .white
-        dayLabel.font = UIFont.systemFont(ofSize: 60.0)
+//        dayLabel.font = UIFont.systemFont(ofSize: 60.0)
+        dayLabel.textColor = .black
         dayLabel.layer.borderColor = UIColor.blue.cgColor
-
+        
         view.addSubview(dayLabel)
+      
         
     }
     
@@ -177,10 +180,12 @@ let dayLabel:UILabel = UILabel()
         let day = tmpDate.component(.day, from: date)
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
-        dayLabel.text = "\(m)年\(d)日"
+        dayLabel.text = "\(m)月\(d)日"
+        
         //realmで登録しているキーと呼び出すときの型と書き方が一致していないとデータを取得できないよ
         let da = "\(year)年\(m)月\(d)日"
-//
+        
+        
 //        print("ここから")
 //        print(m)
 //        print(d)
@@ -193,21 +198,6 @@ let dayLabel:UILabel = UILabel()
         
         recordInfo.readByDay(da:da)
         
-//        dayLabel.text =
-        //        tableView.addSubview(dayLabel)
-//        print("前のことrecordInfo.recordList:\(recordInfo.recordList)")
-        //スケジュール取得
-//        recordInfo.readByDay()
-//         print("後のことrecordInfo.recordList:\(recordInfo.recordList)")
-//       recordInfo.recordList = []
-//        let realm = try! Realm()
-//        var result = realm.objects(RecordInfo.self)
-//        result = result.filter("dayRecord = '\(da)'")
-//        print(result)
-//        for ev in result {
-//                      let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
-//                        recordInfo.recordList.append(results)
-//
 //                        print("これは")
 //                        print("recordInfo:\(recordInfo)")
 //            print("recordInfo.recordList:\(recordInfo.recordList)")
@@ -223,6 +213,7 @@ let dayLabel:UILabel = UILabel()
         print("recordInfo.recordGoal:\(recordInfo.recordGoal)")
         
         tableView.reloadData()
+
           }
     
     
@@ -243,6 +234,8 @@ extension calenderViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        cell.backgroundColor = UIColor.clear
+    
         
         cell.textLabel?.text = recordInfo.recordList[indexPath.row]["recordGoal"] as! String
        print(recordInfo.recordList[indexPath.row]["recordGoal"] as! String)
@@ -255,7 +248,13 @@ extension calenderViewController {
         let storyboard: UIStoryboard = self.storyboard!
         
         let detailInformation = storyboard.instantiateViewController(withIdentifier: "ShowResult") as! showResultViewController
+        
         detailInformation.goaaaaaaal = recordInfo.recordList[indexPath.row]["recordGoal"] as! String
+        detailInformation.raaaaaaate = recordInfo.recordList[indexPath.row]["achieveRate"] as! Int
+        detailInformation.commmmment = recordInfo.recordList[indexPath.row]["recordComment"] as! String
+        detailInformation.daaaaaaaay = dayLabel.text!
+        
+        
         
         self.present(detailInformation, animated: true, completion: nil)
 
@@ -299,7 +298,17 @@ extension calenderViewController{
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
     }
+   
+    
 }
+
+    
+
+
+
+
+
+
 
 //TODO:データの受け渡し
 //TODO:データを表示する　どの日に何をしたのかを色でわかるように

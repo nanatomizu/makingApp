@@ -11,8 +11,16 @@ import UIKit
 class showResultViewController: UIViewController {
 
     
-let goalTextField:UITextField = UITextField()
+    let goalTextField:UITextField = UITextField()
+    let rateTextField:UITextField = UITextField()
+    let commentTextView:UITextView = UITextView()
+    let dayLabel:UILabel = UILabel()
+    
     var goaaaaaaal:String = ""
+    var raaaaaaate:Int = 0
+    var commmmment:String = ""
+    var daaaaaaaay:String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +28,7 @@ let goalTextField:UITextField = UITextField()
         
         
         backGroundColor()
+        day()
         goals()
         achieveRate()
         comment()
@@ -68,6 +77,16 @@ extension showResultViewController{
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
     }
+    func day(){
+        let dayLabel:UILabel = UILabel()
+        dayLabel.text = daaaaaaaay
+        dayLabel.frame.size = CGSize(width: 120, height: 30)
+        dayLabel.center = CGPoint(x: screenWidth / 2, y: 140)
+        dayLabel.textAlignment = .center
+        dayLabel.textColor = .black
+        dayLabel.backgroundColor = .clear
+        view.addSubview(dayLabel)
+    }
     func goals(){
         let goalLabel:UILabel = UILabel()
         goalLabel.text = "目標"
@@ -100,7 +119,7 @@ extension showResultViewController{
         view.addSubview(rateLabel)
         
         let rateTextField:UITextField = UITextField()
-        rateTextField.text = "aaaaaaaaaaaaaaaaa"
+        rateTextField.text = "\(raaaaaaate)%"
         rateTextField.frame.size = CGSize(width: 280, height: 36)
         rateTextField.center = CGPoint(x: screenWidth / 2, y: 330 )
         rateTextField.textAlignment = .center
@@ -121,7 +140,7 @@ extension showResultViewController{
         view.addSubview(commentabel)
         
         let commentTextView:UITextView = UITextView()
-        commentTextView.text = "aaaaaaaaaaaaaaaaa"
+        commentTextView.text = commmmment
         commentTextView.frame.size = CGSize(width: 280, height: 100)
         commentTextView.center = CGPoint(x: screenWidth / 2, y: 460 )
         commentTextView.textAlignment = .center

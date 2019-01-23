@@ -10,12 +10,13 @@ import UIKit
 import Charts
 import RealmSwift
 import  SlideMenuControllerSwift
+import  SideMenu
 
 let recordInfoGraph = RecordInfo()
 
 //TODO:データの受け渡し
 //TODO:データに応じて値を変える
-//日付と達成率のデータを取ってくる->配列にセットする->ひ配列に沿って表示させる
+//日付と達成率のデータを取ってくる->配列にセットする->配列に沿って表示させる
 //
 
 class myPageViewController: UIViewController
@@ -24,30 +25,33 @@ class myPageViewController: UIViewController
 
     
 
-    let data:[[Double]] = [[0,1,1,2,3,5,8,13],[10,14,30,44,52,11,22,44],[20,30,40,50,60,70,80,90,100]]
+    let data:[[Double]] = [[0,1,1,3,5,8,13],[10,14,30,44,52,11,22,44],[20,30,40,50,60,70,80,90,100,12,13,24,43,3,5,53,43,34,43,34,3,2,32,34,3,54,4,65,76,89,67,65,45,54,43,54,34,43,34,3,32,4,34,45,45,3,43,32,34,43,45,34,34,32]]
     
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recordInfoGraph.readAll()
         
-        recordInfoGraph.readGraphAll()
-        print("recordInfoGraph.recordList\(recordInfoGraph.recordList)")
+       
       
-       
-       
         
          backGroundColor()
         
-        let rect = CGRect(x:20, y: 50, width: 350, height: self.view.frame.height - 350)
+        let rect = CGRect(x:0, y: 100, width: screenWidth, height: self.view.frame.height - 350)
         
         let chartView = LineChartView(frame: rect)
-         chartView.backgroundColor = UIColor.lightGray
-       
+         chartView.backgroundColor = UIColor.white
         
         
         var entries = [[ChartDataEntry]]()
         var dataSets = [LineChartDataSet]()
+        
         
         
         for i in 0 ..< data.count{

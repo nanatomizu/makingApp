@@ -13,6 +13,11 @@ let goalSet = GoalFirstInfo()
 
 class showGoalListViewController: UIViewController {
     
+    var gooooooooal:String = ""
+    var mooonthgoal:String = ""
+    var duuuuuueday:String = ""
+    var daaaaaygoal:String = ""
+    var cooooooment:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +41,16 @@ class showGoalListViewController: UIViewController {
         goalTextField.textAlignment = .center
 //        goalTextField.backgroundColor =
         goalTextField.isEnabled = false
-        goalTextField.text = "テキスト"
+        goalTextField.text = gooooooooal
         goalTextField.backgroundColor = UIColor.white
-        goalTextField.textColor = UIColor.lightGray
+        goalTextField.textColor = UIColor.black
         self.view.addSubview(goalTextField)
         
         let monthGoalLabel:UILabel = UILabel()
         monthGoalLabel.frame.size = CGSize(width: 279, height: 18)
         monthGoalLabel.center = CGPoint(x: screenWidth / 2, y: 242 )
         monthGoalLabel.textAlignment = .center
-        monthGoalLabel.text = "1日の目標"
+        monthGoalLabel.text = "月の目標"
         monthGoalLabel.textColor = UIColor.black
         self.view.addSubview(monthGoalLabel)
         
@@ -54,36 +59,70 @@ class showGoalListViewController: UIViewController {
         monthGoalTextField.center = CGPoint(x: screenWidth / 2, y: 286 )
         monthGoalTextField.textAlignment = .center
             monthGoalTextField.isEnabled = false
-        monthGoalTextField.text = "テキスト"
+        monthGoalTextField.text = mooonthgoal
         monthGoalTextField.backgroundColor = UIColor.white
-        monthGoalTextField.textColor = UIColor.lightGray
+        monthGoalTextField.textColor = UIColor.black
         self.view.addSubview(monthGoalTextField)
         
-        let dayGoalLabel:UILabel = UILabel()
-        dayGoalLabel.frame.size = CGSize(width: 279, height: 18)
-        dayGoalLabel.center = CGPoint(x: screenWidth / 2, y: 329 )
-        dayGoalLabel.textAlignment = .center
-        dayGoalLabel.text = "時間"
-        dayGoalLabel.textColor = UIColor.black
-        self.view.addSubview(dayGoalLabel)
+        let dueDayLabel:UILabel = UILabel()
+        dueDayLabel.frame.size = CGSize(width: 279, height: 18)
+        dueDayLabel.center = CGPoint(x: screenWidth / 2, y: 329 )
+        dueDayLabel.textAlignment = .center
+        dueDayLabel.text = "期限"
+        dueDayLabel.textColor = UIColor.black
+        self.view.addSubview(dueDayLabel)
         
-        let dayGoalTextView:UITextField = UITextField()
-        dayGoalTextView.frame.size = CGSize(width: 279, height: 24)
-        dayGoalTextView.center = CGPoint(x: screenWidth / 2, y: 379 )
-        dayGoalTextView.textAlignment = .center
-        dayGoalTextView.isEnabled = false
-        dayGoalTextView.text = "テキスト"
-        dayGoalTextView.backgroundColor = UIColor.white
-        dayGoalTextView.textColor = UIColor.lightGray
-        self.view.addSubview(dayGoalTextView)
+        let dueDayTextField:UITextField = UITextField()
+            dueDayTextField.frame.size = CGSize(width: 279, height: 24)
+        dueDayTextField.center = CGPoint(x: screenWidth / 2, y: 379 )
+        dueDayTextField.textAlignment = .center
+        dueDayTextField.isEnabled = false
+        dueDayTextField.text = duuuuuueday
+        dueDayTextField.backgroundColor = UIColor.white
+        dueDayTextField.textColor = UIColor.black
+        self.view.addSubview(dueDayTextField)
         
         let timeLabel:UILabel = UILabel()
-        dayGoalLabel.frame.size = CGSize(width: 279, height: 24)
-        dayGoalLabel.center = CGPoint(x: screenWidth / 2, y: 329 )
-        dayGoalLabel.textAlignment = .center
-        dayGoalLabel.text = "1日の目標"
-        dayGoalLabel.textColor = UIColor.black
-        self.view.addSubview(dayGoalLabel)
+        timeLabel.frame.size = CGSize(width: 279, height: 24)
+        timeLabel.center = CGPoint(x: screenWidth / 2, y: 423 )
+        timeLabel.textAlignment = .center
+        timeLabel.text = "1日の目標"
+        timeLabel.backgroundColor = .clear
+        timeLabel.textColor = UIColor.black
+        self.view.addSubview(timeLabel)
+        
+        let timeTextField:UITextField = UITextField()
+        timeTextField.frame.size = CGSize(width: 279, height: 24)
+        timeTextField.center = CGPoint(x: screenWidth / 2, y: 466 )
+        timeTextField.textAlignment = .center
+        timeTextField.isEnabled = false
+        timeTextField.text = daaaaaygoal
+        timeTextField.backgroundColor = UIColor.white
+        timeTextField.textColor = UIColor.black
+        self.view.addSubview(timeTextField)
+        
+        let commentLabel:UILabel = UILabel()
+        commentLabel.frame.size = CGSize(width: 279, height: 25)
+        commentLabel.center = CGPoint(x: screenWidth / 2, y: 515 )
+        commentLabel.textAlignment = .center
+        commentLabel.text = "コメント"
+        commentLabel.backgroundColor = .clear
+        commentLabel.textColor = UIColor.black
+        self.view.addSubview(commentLabel)
+        
+        
+        let commentTextView:UITextView = UITextView()
+        commentTextView.frame.size = CGSize(width: 279, height: 75)
+        commentTextView.center = CGPoint(x: screenWidth / 2, y:570  )
+        commentTextView.textAlignment = .center
+        commentTextView.isEditable = false
+        commentTextView.text = cooooooment
+        commentTextView.backgroundColor = UIColor.white
+        commentTextView.textColor = UIColor.black
+        self.view.addSubview(commentTextView)
+        
+        
+        
         
         
         

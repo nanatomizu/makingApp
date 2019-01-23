@@ -26,6 +26,7 @@
 		5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5163FF4A21EA3F2900049171 /* homeViewController.swift */; };
 		5164C8AC21ECCC130079BF9A /* meigenRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5164C8AB21ECCC130079BF9A /* meigenRealm.swift */; };
 		51668B0921F31E8400DB84CD /* showGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51668B0821F31E8400DB84CD /* showGoalListViewController.swift */; };
+		51AD409D21F6E41600E0645E /* sideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD409C21F6E41600E0645E /* sideMenuViewController.swift */; };
 		51B32FE921C8CBB2007D6462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FE821C8CBB2007D6462 /* AppDelegate.swift */; };
 		51B32FEB21C8CBB2007D6462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEA21C8CBB2007D6462 /* ViewController.swift */; };
 		51B32FF121C8CBB2007D6462 /* makingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51B32FEF21C8CBB2007D6462 /* makingApp.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 		5163FF4A21EA3F2900049171 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		5164C8AB21ECCC130079BF9A /* meigenRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meigenRealm.swift; sourceTree = "<group>"; };
 		51668B0821F31E8400DB84CD /* showGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showGoalListViewController.swift; sourceTree = "<group>"; };
+		51AD409C21F6E41600E0645E /* sideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideMenuViewController.swift; sourceTree = "<group>"; };
 		51B32FE521C8CBB2007D6462 /* makingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B32FE821C8CBB2007D6462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51B32FEA21C8CBB2007D6462 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				510E943F21F5F3230066EAFE /* showResultViewController.swift */,
 				514A7B3321CA87CD00594B68 /* calenderViewController.swift */,
 				514A7B3B21CAA12900594B68 /* myPageViewController.swift */,
+				51AD409C21F6E41600E0645E /* sideMenuViewController.swift */,
 			);
 			path = myPage;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -320,6 +324,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51AD409D21F6E41600E0645E /* sideMenuViewController.swift in Sources */,
 				514C515921E208CB003D62AF /* notificationViewController.swift in Sources */,
 				5164C8AC21ECCC130079BF9A /* meigenRealm.swift in Sources */,
 				5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */,

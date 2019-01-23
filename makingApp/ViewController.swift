@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 
 let goalInfo = GoalFirstInfo()
-
+let recordInfos = RecordInfo()
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
@@ -72,6 +72,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //ゴール情報の更新、インスタンス化
         //        let goalInfo = GoalInfo()
         goalInfo.readAll()
+        RecordInfos.readAll()
+        
         print(goalInfo.goalList)
         //        print("0つ目を出したよ\(goalInfo.goalList[0])")
         //        print("0つ目のgoalを出したよ\(goalInfo.goalList[0]["goal"])")
@@ -122,8 +124,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
   
         
 //        //ここに遷移処理を書く
-        self.present(showGoalListViewController(), animated: true, completion: nil)
+        //ここに遷移処理を書く
+        let storyboard: UIStoryboard = self.storyboard!
         
+        let detailInformation = storyboard.instantiateViewController(withIdentifier: "showGoalList") as! showGoalListViewController
+        
+        detailInformation.gooooooooal = goalInfo.goalList[indexPath.row]["goal"] as! String
+        detailInformation.mooonthgoal = goalInfo.goalList[indexPath.row]["monthlyGoal"] as! String
+        detailInformation.cooooooment = goalInfo.goalList[indexPath.row]["goalImageComment"] as! String
+        detailInformation.daaaaaygoal = goalInfo.goalList[indexPath.row]["dailyGoal"] as! String
+        detailInformation.duuuuuueday = goalInfo.goalList[indexPath.row]["dueDay"] as! String
+        
+//
+//
+        
+        self.present(detailInformation, animated: true, completion: nil)
     }
     
     
@@ -164,9 +179,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     @IBAction func goToRecord(_ sender: UIButton) {
-        goRecord()
+        if goalInfo.goalList == [] as! [NSDictionary]{
+             alertGoal()
+         //もし先に記録されたデータがあればその内容を呼び表示する
+        }else if recordInfos.recordList {
+            goooRecord()
+        }
     }
-    func goRecord(){
+    func goooRecord(){
         //まずは、同じstororyboard内であることをここで定義します
         let storyboard: UIStoryboard = self.storyboard!
         //ここで移動先のstoryboardを選択
@@ -176,12 +196,32 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
-    
-    
+        func alertGoal(){
+            
+                let alert = UIAlertController(title:"", message:"先に目標を設定してください" ,
+                                              preferredStyle: .alert)
+                //OKボタンをアラートオブジェクトに追加
+                //
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in self.goSetGoal()}))
+                //handlerはOKボタンが押された時にしたい処理を書く
+                //アラートを画面に表示する
+                present(alert,animated: true)
+                //presentで表示する
+        }
+    func goSetGoal(){
+        //まずは、同じstororyboard内であることをここで定義します
+        let storyboard: UIStoryboard = self.storyboard!
+        //ここで移動先のstoryboardを選択
+        let second = storyboard.instantiateViewController(withIdentifier: "setGoal")
+        //ここが実際に移動するコードとなります
+        self.present(second, animated: true, completion: nil)
+    }
     
     
     
     @IBAction func tapBtn(_ sender: Any) {
+        
         goalInfo.deleteAll()
         
         
@@ -191,6 +231,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.timeTableView.reloadData()
         
     }
+
 }
 extension ViewController{
     func backGroundColor() {
