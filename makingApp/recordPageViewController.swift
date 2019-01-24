@@ -191,7 +191,12 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
         
         try! realm.write {
             //日付表示の内容とスケジュール入力の内容が書き込まれる。
-            let recordInfos = [RecordInfo(value: ["recordGoal":recordToday.goalList[goalIndex]["goal"] as! String, "recordComment": commentTextView.text,"achieveRate":rate[rateIndex],"dayRecord":date])]
+            let recordInfos = RecordInfo()
+            recordInfos.recordGoal = recordToday.goalList[goalIndex]["goal"] as! String
+            recordInfos.recordComment = commentTextView.text
+            recordInfos.achieveRate = rate[rateIndex]
+            recordInfos.dayRecord  = date
+//           ["goal"] as! String, "recordComment": commentTextView.text,"achieveRate":rate[rateIndex],"dayRecord":date])]
             realm.add(recordInfos)
             print("データ書き込み中")
             print(recordInfos)

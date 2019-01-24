@@ -102,20 +102,19 @@ func readAll(){
     }
 }
 
-    func readGaph(goal:NSDictionary){
+    func readGaph(goal:String){
         recordList = []
         let realm = try!Realm()
-        let Graph = realm.objects(RecordInfo.self).filter("recordGoal = '\(goal)'").sorted(byKeyPath:"dayRecord",ascending: false)
-        var data = [[],[]]
-        for graph in Graph {
-            data[0].append(achieveRate)
-                data[1].append(dayRecord)
+        var result = realm.objects(RecordInfo.self)
+          result = result.filter("recordGoal like '\(goal)'")
+            .sorted(byKeyPath:"dayRecord",ascending: true)
+        
+        for value in result  {
+            let records = ["recordGoal": value.recordGoal,"recordComment":value.recordComment,"achieveRate":value.achieveRate, "dayRecord":value.dayRecord] as NSDictionary
             
-            
-            
+            self.recordList.append(records)
         }
     }
-    
     func readByDay(da:String){
           recordList = []
         let realm = try! Realm()
@@ -123,7 +122,7 @@ func readAll(){
         result = result.filter("dayRecord = '\(da)'")
 
         for ev in result {
-            let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
+            let results = ["ç": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
             self.recordList.append(results)
         }
 
@@ -146,10 +145,6 @@ func readAll(){
 
     //更新のための関数、日付と達成度の値を、上の配列の保存するように関数を書く
     //読み込み方は登録されてるデータの中から任意のデータを取り出す方法filter ー＞　値と日付データを取り出す処理
-
-
-
-
 
 
 

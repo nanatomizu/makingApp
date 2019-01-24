@@ -72,7 +72,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //ゴール情報の更新、インスタンス化
         //        let goalInfo = GoalInfo()
         goalInfo.readAll()
-        RecordInfos.readAll()
+        recordInfos.readAll()
         
         print(goalInfo.goalList)
         //        print("0つ目を出したよ\(goalInfo.goalList[0])")
@@ -179,10 +179,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     @IBAction func goToRecord(_ sender: UIButton) {
+        //もしデータがなかれば登録ページに行くコード
         if goalInfo.goalList == [] as! [NSDictionary]{
              alertGoal()
          //もし先に記録されたデータがあればその内容を呼び表示する
-        }else if recordInfos.recordList {
+        }else  {
             goooRecord()
         }
     }

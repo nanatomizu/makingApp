@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
-import RealmSwift_
+import RealmSwift
 
 let recordInfo = RecordInfo()
 
@@ -132,7 +132,7 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         }
         
         return nil
-         print("前のことrecordInfo.recordList:\(recordInfo.recordList)")
+        
     }
     
     //カレンダー処理(スケジュール表示処理)
@@ -197,7 +197,7 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         //        view.addSubview(tableView)
         
         recordInfo.readByDay(da:da)
-        
+        print("recordInfo.recordList:::::::::\(recordInfo.recordList)")
 //                        print("これは")
 //                        print("recordInfo:\(recordInfo)")
 //            print("recordInfo.recordList:\(recordInfo.recordList)")
