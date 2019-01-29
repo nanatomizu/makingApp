@@ -17,7 +17,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
     
     
-    
+  
+    let date = Date()
+   
     let realm = try! Realm()
     
     //    var homePageGoals:[String] = ["a","b","c","","" ]
@@ -43,6 +45,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        
+//        
+//       print(goalInfo.goalList[0]["goal"] as! String)
+//    print(goalInfo.goalList[0]["notificationWord"] as! String)
+//        
+        
+     
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        print(df.string(from: date))
 //        goalLabel.backgroundColor = 
         //背景色
        backGroundColor()
@@ -74,10 +86,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         goalInfo.readAll()
         recordInfos.readAll()
         
-        print(goalInfo.goalList)
-        //        print("0つ目を出したよ\(goalInfo.goalList[0])")
-        //        print("0つ目のgoalを出したよ\(goalInfo.goalList[0]["goal"])")
-        
+       
         
     }
     
@@ -142,52 +151,51 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     
-    //Mark: セルの編集ができるようにする。
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+//    //Mark: セルの編集ができるようにする。
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
 //        if(editingStyle == UITableViewCell.EditingStyle.delete) {
 //            do{
+//
 //                let realm = try Realm()
 //                try realm.write {
-//                    realm.delete(goalInfo.goalList[indexPath.row])
+//                    realm.delete(goalInfo[indexPath.row])
+//                    realm.delete(recordInfo[indexPath.row])
 //                }
 //                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
 //            }catch{
 //            }
-//            goalTableView.reloadData()
-//            dailyTableView.reloadData()
-//            timeTableView.reloadData()
-//        }
-    
-        
-        print("前ゴールリストの中身変化の確認:\(goalInfo.goalList)")
-        goalInfo.goalList.remove(at: indexPath.row)
-        goalTableView.deleteRows(at: [indexPath], with: .fade)
-//        try! realm.write() {
-//            realm.delete(realm.objects(GoalFirstInfo.self).filter("\(goalInfo.goalList[indexPath.row])"))
+//            tableView.reloadData()
 //
-//        print("デリート後ゴールリストの中身変化の確認:\(goalInfo.goalList)")
 //
-//        }
-        goalTableView.reloadData()
-        dailyTableView.reloadData()
-        timeTableView.reloadData()
-//        TODO:realmDBでのデータを削除するコード入ります
-    }
-    
+//        goalTableView.reloadData()
+//        dailyTableView.reloadData()
+//        timeTableView.reloadData()
+//
+////        TODO:realmDBでのデータを削除するコード入ります
+//    }
+//    }
 
     
     
     @IBAction func goToRecord(_ sender: UIButton) {
+        
+        
         //もしデータがなかれば登録ページに行くコード
         if goalInfo.goalList == [] as! [NSDictionary]{
              alertGoal()
          //もし先に記録されたデータがあればその内容を呼び表示する
-        }else  {
-            goooRecord()
+        }else{
+            recordInfos.readByDay(da:"\(date)")
+    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\(recordInfos.recordList)")
+         if  recordInfos.recordList  != [] {
+            
+            
         }
     }
+    }
     func goooRecord(){
+        
         //まずは、同じstororyboard内であることをここで定義します
         let storyboard: UIStoryboard = self.storyboard!
         //ここで移動先のstoryboardを選択

@@ -19,12 +19,12 @@ class GoalFirstInfo: Object {
     @objc dynamic var notificationWord = String()
     @objc dynamic var dueDay = String()
     @objc dynamic var todayTime = String()
-    @objc dynamic var notificationTime = String()
+    @objc dynamic var notificationTime = Date()
     var goalList = [NSDictionary]()
     
     //データの書き込み処理
     func creat(goal:String,goalImageComment:String,dueday:String,monthlyGoal:String,dailyGoal:String
-        ,notificationWord:String,todayTime:String,notificationTime:String){
+        ,notificationWord:String,todayTime:String,notificationTime:Date){
         let realm = try! Realm()
         
         
@@ -50,7 +50,7 @@ class GoalFirstInfo: Object {
         let realm = try! Realm()
         let goalInfo = realm.objects(GoalFirstInfo.self)
         for value in goalInfo {
-            let goals = ["goal":value.goal,"dueDay":value.dueDay,"goalImageComment":value.goalImageComment,"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,"todayTime":value.todayTime,"notificationWord":value.notificationWord,"notificationTime":value] as NSDictionary
+            let goals = ["goal":value.goal,"dueDay":value.dueDay,"goalImageComment":value.goalImageComment,"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,"todayTime":value.todayTime,"notificationWord":value.notificationWord,"notificationTime":value.notificationTime] as NSDictionary
             
             self.goalList.append(goals)
             
@@ -62,14 +62,16 @@ class GoalFirstInfo: Object {
             realm.delete(realm.objects(GoalFirstInfo.self))
         }
     }
-//    func deletePart(){
-//        let realm = try! Realm()
-//        try! realm.write() {
-//            realm.delete(realm.objects(GoalFirstInfo.self).filter( ))
-//        }
-//    }
+    func deleteCell(goalFor:String){
+        let realm = try!Realm()
+        try! realm.write(){
+            var result = realm.objects(GoalFirstInfo.self)
+            result =  result.filter("goal like '\(goalFor)'")
+            realm.delete(result)
+        }
+    }
+  
 }
-
 class RecordInfo:Object{
     @objc dynamic var recordGoal = String()
     @objc dynamic var recordComment = String()
@@ -122,7 +124,7 @@ func readAll(){
         result = result.filter("dayRecord = '\(da)'")
 
         for ev in result {
-            let results = ["ç": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
+            let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
             self.recordList.append(results)
         }
 
@@ -141,6 +143,15 @@ func readAll(){
             realm.delete(realm.objects(RecordInfo.self))
         }
     }
+    
+    func deleteRecord(goalFor:String){
+        let realm = try!Realm()
+        try! realm.write(){
+            var result = realm.objects(RecordInfo.self)
+            result =  result.filter("recordGoal like '\(goalFor)'")
+            realm.delete(result)
+        }
+    }
 }
 
     //更新のための関数、日付と達成度の値を、上の配列の保存するように関数を書く
@@ -150,7 +161,7 @@ func readAll(){
 
 
 class FavoritesQuotation: Object {
-    @objc dynamic var favorites = Bool()
+    @objc dynamic var favorites = String()
     
     //データ書き込み処理
     func create(favorites:String){
@@ -158,8 +169,7 @@ class FavoritesQuotation: Object {
         
         try! realm.write {
             let favoritesQuotation = FavoritesQuotation()
-            favoritesQuotation.favorites = false
-            
+         favoritesQuotation.favorites = favorites
         }
     }
     
@@ -167,18 +177,26 @@ class FavoritesQuotation: Object {
     func readAll(){
        let realm = try! Realm()
         let favoritesQuotation = realm.objects(FavoritesQuotation.self)
+            
         
+        }
+    func deleteAll(){
+        let realm = try!Realm()
+        try! realm.write(){
+            realm.delete(realm.objects(FavoritesQuotation.self))
+        }
     }
-////    お気に入り更新
-//    func upDateFav(favorites:Bool){
+    }
+// //    お気に入り更新
+//    func upDateFav(favorites:String){
 //        let realm = try! Realm()
 //        let favoritesQuotation =  realm.objects(FavoritesQuotation.self)
-//        
+//
 //        try! realm.write {
-//            favoritesQuotation.favorites = favorites
+//            favoritesQuotation.favorites = true
 //        }
 //    }
+//
     
-    
-}
+
 

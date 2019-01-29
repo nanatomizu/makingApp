@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		510E944021F5F3230066EAFE /* showResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510E943F21F5F3230066EAFE /* showResultViewController.swift */; };
+		5112690621FED472008BDF6F /* goalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5112690521FED472008BDF6F /* goalsViewController.swift */; };
 		512E7CC921F0AB4B0003D476 /* usuful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E7CC821F0AB4B0003D476 /* usuful.swift */; };
 		512F2BB321E888C90038AC85 /* setGoalFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */; };
 		512F2BB521E889230038AC85 /* setGoalSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		4A633DCECC05DA3377713EA5 /* Pods_makingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		510E943F21F5F3230066EAFE /* showResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showResultViewController.swift; sourceTree = "<group>"; };
+		5112690521FED472008BDF6F /* goalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goalsViewController.swift; sourceTree = "<group>"; };
 		512E7CC821F0AB4B0003D476 /* usuful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usuful.swift; sourceTree = "<group>"; };
 		512F2BB221E888C80038AC85 /* setGoalFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setGoalFirstViewController.swift; sourceTree = "<group>"; };
 		512F2BB421E889230038AC85 /* setGoalSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setGoalSecondViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				51382A1921EB2FFA00672D7E /* RealmData.swift */,
 				51668B0721F31E3800DB84CD /* quotation */,
 				512E7CC821F0AB4B0003D476 /* usuful.swift */,
+				5112690521FED472008BDF6F /* goalsViewController.swift */,
 				5164C8AB21ECCC130079BF9A /* meigenRealm.swift */,
 				51EB068D21CBD0CA007AD545 /* setGoalViewController.swift */,
 				514A7B3721CA944F00594B68 /* settingDetailsViewController.swift */,
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51AD409D21F6E41600E0645E /* sideMenuViewController.swift in Sources */,
+				5112690621FED472008BDF6F /* goalsViewController.swift in Sources */,
 				514C515921E208CB003D62AF /* notificationViewController.swift in Sources */,
 				5164C8AC21ECCC130079BF9A /* meigenRealm.swift in Sources */,
 				5163FF4B21EA3F2900049171 /* homeViewController.swift in Sources */,

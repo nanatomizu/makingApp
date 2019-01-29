@@ -15,13 +15,14 @@
 import UIKit
 import RealmSwift
 
-//let quote = Meigen()
+
 
 class quotationViewController: UIViewController {
  
-//let realm = try! Realm()
+
+     let realm = try! Realm()
     
-    var quotations = ["壁というのはできる人にしかやってこない。超えられる可能性がある人にしかやってこない。だから、壁がある時はチャンスだと思っている。                                         - イチロー -","努力せずに何かできるようになる人のことを 「天才」というのなら、僕はそうじゃない。努力した結果、何かができるようになる人のことを「天才」というのなら、僕はそうだと思う。人が僕のことを、努力もせずに打てるんだと思うなら、それは間違いです。　　　　      　  　                      　　　　　　　　　　　　　　　　　　　　　　　　　                                イチロー  ","振り向くな、振り向くな、後ろには夢がない　　　　　　　　　　坂本龍馬"
+    var quotations = ["壁というのはできる人にしかやってこない。超えられる可能性がある人にしかやってこない。だから、壁がある時はチャンスだと思っている。                                         - イチロー -","努力せずに何かできるようになる人のことを 「天才」というのなら、僕はそうじゃない。努力した結果、何かができるようになる人のことを「天才」というのなら、僕はそうだと思う。人が僕のことを、努力もせずに打てるんだと思うなら、それは間違いです。　　　　      　  　                      　　　　　　　　　　　　　　　　　　　　　　　　　                                イチロー  ","振り向くな、振り向くな、後ろには夢がない　　　　　　　　　　坂本龍馬","一番難しいのは行動しようと腹をくくること。あとはただ粘り強さの問題だ。   アメリア・イアハート"
     ]
 
     
@@ -55,13 +56,30 @@ class quotationViewController: UIViewController {
         
         quoteTextView.text = quotations[randomNumber]
     }
-    
+    //お気に入りボタン
     @IBAction func favoriteBtn(_ sender: UIButton) {
        
-   
+        //DB書き込み処理
+        print("データ書き込み開始")
+        
+        
+        
+        try! realm.write {
+            
+            //ゴールの各内容が書き込まれる。
+            let favoritesQuotation = FavoritesQuotation()
+          favoritesQuotation.favorites = quoteTextView.text
+            
+            realm.add(favoritesQuotation)
+            print("データ書き込み中")
+            print(favoritesQuotation)
+        }
+        
+        print("データ書き込み完了")
+        
 }
     
-    
+    //共有ボタン
     @IBAction func shareSnsBtn(_ sender: UIButton) {
       shareSNS()
     }
@@ -79,7 +97,12 @@ class quotationViewController: UIViewController {
         //controllerは上のletで指定したもの
         present(controller, animated: true)
     }
-
+    
+    
+    @IBAction func deleteQuote(_ sender: Any) {
+        fav.deleteAll()
+    }
+    
    
 }
 

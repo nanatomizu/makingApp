@@ -21,7 +21,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     var monthGoal:String!
     var dayGoal:String!
     var dayTime:String!
-    
+ 
     
     
     //変数を宣言する
@@ -32,6 +32,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     
     let w = UIScreen.main.bounds.size.width
     let h = UIScreen.main.bounds.size.height
+   
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
@@ -55,6 +56,8 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        
         backGroundColor()
         //ラベルとテキストフィールドとボタンの設定
         timeLabel.frame.size = CGSize(width: 279, height: 19)
@@ -77,6 +80,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
         dateFormat.dateStyle = .none
         dateFormat.timeStyle = .short
         dateFormat.locale = Locale(identifier: "ja_JP")
+        
         print("ここから")
         print(goal)
         print(goalDetail)
@@ -121,10 +125,14 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
         
         let pickerDate = inputDatePicker.date
         notificationTimeTextField.text = dateFormat.string(from: pickerDate)
+        
+       
+       
+        
         self.view.endEditing(true)
         
         //日付を出してます
-        print(dateFormat.dateFormat)
+        print("pickerDate", pickerDate)
         
     }
     
@@ -143,6 +151,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
 
 
         try! realm.write {
+         
             //ゴールの各内容が書き込まれる。
             let goalFirstInfo1 = GoalFirstInfo()
             goalFirstInfo1.goal = goal!
@@ -152,7 +161,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
             goalFirstInfo1.dailyGoal = dayGoal!
             goalFirstInfo1.todayTime = dayTime!
             goalFirstInfo1.notificationWord = notificationWordtextField.text!
-            goalFirstInfo1.notificationTime = notificationTimeTextField.text!
+            goalFirstInfo1.notificationTime = inputDatePicker.date
             
             realm.add(goalFirstInfo1)
             print("データ書き込み中")
@@ -268,6 +277,8 @@ extension notificationViewController{
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
     }
+   
+
+
+
 }
-
-

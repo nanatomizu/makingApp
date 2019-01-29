@@ -14,9 +14,11 @@ let recordToday = GoalFirstInfo()
 class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
       let realm = try! Realm()
-    
+    let date = Date()
 //    var goals = ["１００キロ走る","フルマラソン完走","美味しいものをたべる"]
-    var rate = [0,10,20,30,40,50,60,70,80,90,100]
+    
+    var rate:[Int] = []
+   
     
     var goalIndex = -1
     var rateIndex = -1
@@ -37,6 +39,12 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //達成率に数です
+        for i in 0...100{
+          
+            rate.append(i)
+        }
+      
         goalPickerView.delegate = self
         goalPickerView.dataSource = self
         ratePickerView.delegate = self
@@ -51,7 +59,7 @@ class recordPageViewController: UIViewController,UIPickerViewDataSource,UIPicker
         dateFormatter.locale = Locale(identifier: "ja_JP")
         let now = Date()
         let date = dateFormatter.string(from: Date())
-        print(dateFormatter.string(from: now)) // 平成29年8月13日日曜日 16時29分05秒 日本標準時
+        print("時間表示\(dateFormatter.string(from: now))") // 平成29年8月13日日曜日 16時29分05秒 日本標準時
         print(date)
         //commentTextViewの話
         // 枠のカラー

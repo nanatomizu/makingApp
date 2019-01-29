@@ -11,6 +11,8 @@
 import UIKit
 import RealmSwift
 
+let numberGoals = GoalFirstInfo()
+
 class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
  
@@ -200,6 +202,13 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         goalTextField.text = ""
         goalDetailTextView.text = ""
         
+        numberGoals.readAll()
+        if numberGoals.goalList.count ==  4 {
+            limitedSetGoal()
+        }else{
+            
+        }
+        
     }
     //画面が消える時に呼ばれる
     override func viewWillDisappear(_ animated: Bool) {
@@ -288,6 +297,29 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
             nVC.goalDetail = goalDetailTextView.text
         }
     }
+    func limitedSetGoal(){
+       
+            let alert = UIAlertController(title:"", message:"目標を設定できるのは４つまでです" ,
+                                          preferredStyle: .alert)
+            //OKボタンをアラートオブジェクトに追加
+            //
+            
+        alert.addAction(UIAlertAction(title: "OK", style:.default, handler: {action in self.goMypage()} ))
+    
+            //handlerはOKボタンが押された時にしたい処理を書く
+            //アラートを画面に表示する
+            present(alert,animated: true)
+            //presentで表示する
+    }
+func goMypage(){
+    //まずは、同じstororyboard内であることをここで定義します
+    let storyboard: UIStoryboard = self.storyboard!
+    //ここで移動先のstoryboardを選択
+    let second = storyboard.instantiateViewController(withIdentifier: "Home")
+    //ここが実際に移動するコードとなります
+    self.present(second, animated: true, completion: nil)
+}
+    
     func alertGoal(){
         if goalTextField.text == "" && goalDetailTextView.text == ""{
             let alert = UIAlertController(title:"記入漏れありますよ", message:"ゴールと将来のイメージを入力してください！" ,
@@ -332,6 +364,7 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
  }
     
 }
+
 //キーボード関連の関数をまとめる。
 extension setGoalFirstViewController{
     
