@@ -56,6 +56,17 @@ class GoalFirstInfo: Object {
             
         }
     }
+    func readByGoal(goal:String){
+        goalList = []
+        let realm = try!Realm()
+        var result = realm.objects(GoalFirstInfo.self)
+        result = result.filter("goal like '\(goal)'")
+        for value in result  {
+            let records = ["goal": value.goal,"dueDay":value.dueDay,"goalImageComment":value.goalImageComment,"monthlyGoal":value.monthlyGoal,"dailyGoal":value.dailyGoal,"todayTime":value.todayTime,"notificationWord":value.notificationWord,"notificationTime":value.notificationTime] as NSDictionary
+            
+            self.goalList.append(records)
+        }
+    }
     func deleteAll(){
         let realm = try!Realm()
         try! realm.write(){
@@ -117,6 +128,19 @@ func readAll(){
             self.recordList.append(records)
         }
     }
+    func readGoal(goal:String){
+        recordList = []
+        let realm = try!Realm()
+        var result = realm.objects(RecordInfo.self)
+        result = result.filter("recordGoal like '\(goal)'")
+        
+        for value in result  {
+            let records = ["recordGoal": value.recordGoal,"recordComment":value.recordComment,"achieveRate":value.achieveRate, "dayRecord":value.dayRecord] as NSDictionary
+            
+            self.recordList.append(records)
+        }
+    }
+
     func readByDay(da:String){
           recordList = []
         let realm = try! Realm()
@@ -127,15 +151,27 @@ func readAll(){
             let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate] as NSDictionary
             self.recordList.append(results)
         }
-
     }
-
+    func readByDayGoal(day:String,Goal:String){
+        recordList = []
+        let realm = try! Realm()
+        var result = realm.objects(RecordInfo.self)
+        result = result.filter("(dayRecord = '\(day)') && (recordGoal like '\(Goal)') ")
+        
+        for ev in result {
+            let results = ["recordGoal": ev.recordGoal,"recordComment":ev.recordComment,"achieveRate":ev.achieveRate,"dayRecord":ev.dayRecord] as NSDictionary
+            self.recordList.append(results)
+        }
+        
+      
     
 
     
+
     
     
     
+    }
     
     func deleteAll(){
         let realm = try!Realm()
@@ -161,42 +197,66 @@ func readAll(){
 
 
 class FavoritesQuotation: Object {
-    @objc dynamic var favorites = String()
+//    お気に入りかどうかの情報と名言をセットで保存する
+    @objc dynamic var favorites = false
+    @objc dynamic var quotes  = String()
+    var favRealmList = [NSDictionary]()
     
-    //データ書き込み処理
-    func create(favorites:String){
-        let realm = try! Realm()
+    
+    func creat(favorites:Bool,quotes:String){
+        let realm = try!Realm()
         
         try! realm.write {
-            let favoritesQuotation = FavoritesQuotation()
-         favoritesQuotation.favorites = favorites
+        let favoritesQuotation = FavoritesQuotation()
+            favoritesQuotation.favorites = favorites
+            favoritesQuotation.quotes = quotes
+            realm.add(favoritesQuotation)
         }
-    }
     
+    }
     //データ読み込み処理。
     func readAll(){
+        favRealmList = []
        let realm = try! Realm()
         let favoritesQuotation = realm.objects(FavoritesQuotation.self)
+        for value in favoritesQuotation {
+            let favs = ["favorites":value.favorites,"quotes":value.quotes] as NSDictionary
+                    self.favRealmList.append(favs)
+                }
+            }
+    func readByquote(saying:String,bool:Bool){
+        favRealmList = []
+        let realm = try! Realm()
+        var result = realm.objects(FavoritesQuotation.self)
+        result = result.filter("quotes like '\(saying)' && favorites = \(bool) ")
+        
+        for value in result {
+            let results = ["quotes": value.quotes,"favorites":value.favorites] as NSDictionary
+            self.favRealmList.append(results)
+        }
+    }
+
             
         
-        }
+    
     func deleteAll(){
         let realm = try!Realm()
         try! realm.write(){
             realm.delete(realm.objects(FavoritesQuotation.self))
         }
     }
-    }
-// //    お気に入り更新
-//    func upDateFav(favorites:String){
+
+////// //    お気に入り更新
+//func upDateFav(quottttte:String){
 //        let realm = try! Realm()
-//        let favoritesQuotation =  realm.objects(FavoritesQuotation.self)
+//var result =  realm.objects(FavoritesQuotation.self)
+//   result =  result.filter("(quotes like '\(quottttte)')")
 //
 //        try! realm.write {
-//            favoritesQuotation.favorites = true
+//            result[0].favorites = false
 //        }
 //    }
-//
-    
 
+
+}
 

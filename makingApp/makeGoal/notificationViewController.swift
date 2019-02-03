@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import UserNotifications
 
 
 class notificationViewController: UIViewController,UITextFieldDelegate{
@@ -21,8 +21,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     var monthGoal:String!
     var dayGoal:String!
     var dayTime:String!
- 
-    
+
     
     //変数を宣言する
     //今日の日付を代入
@@ -56,7 +55,7 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         
         backGroundColor()
         //ラベルとテキストフィールドとボタンの設定
@@ -168,8 +167,11 @@ class notificationViewController: UIViewController,UITextFieldDelegate{
             print(goalFirstInfo1)
         }
 
+            
         print("データ書き込み完了")
-        
+            
+            
+            
         goHome()
         
         

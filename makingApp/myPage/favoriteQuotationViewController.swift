@@ -21,6 +21,8 @@ class favoriteQuotationViewController: UIViewController {
     @IBOutlet weak var favoriteQuotationTableView: UITableView!
     
     override func  viewWillAppear(_ animated: Bool) {
+        
+       
     
     }
     override func viewDidLoad() {
@@ -34,7 +36,9 @@ class favoriteQuotationViewController: UIViewController {
         do{
             let realm = try Realm()
             //Todoに保存されているものを全て取得
-            let results = realm.objects(FavoritesQuotation.self)
+            var results = realm.objects(FavoritesQuotation.self)
+            results = results.filter("favorites = \(true)")
+            
             //todoListに格納
             favList = []
             favList = Array(results)
@@ -60,7 +64,7 @@ extension favoriteQuotationViewController:UITableViewDelegate,UITableViewDataSou
         let cell = UITableViewCell(style: .default, reuseIdentifier: "mycell")
       
         //ラベルの中身を表示
-        cell.textLabel!.text =  favList[indexPath.row].favorites
+        cell.textLabel!.text =  favList[indexPath.row].quotes
        
         return cell
     }

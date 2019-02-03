@@ -14,7 +14,6 @@ import  SideMenu
 
 let recordInfoGraph = RecordInfo()
 let goalInfoGraph  = GoalFirstInfo()
-
 //TODO:データの受け渡し
 //TODO:データに応じて値を変える
 //日付と達成率のデータを取ってくる->配列にセットする->配列に沿って表示させる
@@ -25,7 +24,8 @@ class myPageViewController: UIViewController{
     //左が達成度の値、右が日付
     var myDictionary:[Double] = []
     
-    var selectaIndex:String?
+    
+    var selectaIndex:Int?
     
     @IBOutlet weak var myChartView: LineChartView!
     
@@ -35,16 +35,11 @@ class myPageViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-     
-        
      goalInfo.readAll()
-  
-        
-        
-//        for i in goalInfoGraph.goalList{
-//            goaaaaaal = i["goal"] as! String
-        recordInfoGraph.readGaph(goal:selectaIndex! )
+        recordInfoGraph.readGaph(goal:goalInfo.goalList[selectaIndex!]["goal"] as! String )
+        print("selectaIndex",selectaIndex!)
+      
+//        recordInfoGraph.readGaph(goal:goalInfo.goalList[selectaIndex!]["goal"] as! String )
        
             print("これはrecordInfoGraph.recordList",recordInfoGraph.recordList)
            let reRate = recordInfoGraph.recordList.map{ $0["achieveRate"] as! Double }
@@ -53,7 +48,8 @@ class myPageViewController: UIViewController{
             let reDay = recordInfoGraph.recordList.map{ $0["dayRecord"] as! String}
             print("reDay",reDay)
         
-        for i in 0...recordInfoGraph.recordList.count - 1 { myDictionary.append(reRate[i])
+        for i in 0...recordInfoGraph.recordList.count - 1 {
+            myDictionary.append(reRate[i])
         
                 setChart(y: myDictionary)
         }
@@ -66,6 +62,7 @@ class myPageViewController: UIViewController{
          backGroundColor()
  
     }
+    
     func setChart(y: [Double]) {
             // プロットデータ(y軸)を保持する配列
             var dataEntries = [ChartDataEntry]()
@@ -75,7 +72,7 @@ class myPageViewController: UIViewController{
                 dataEntries.append(dataEntry)
             }
             // グラフをUIViewにセット
-            let chartDataSet = LineChartDataSet(values: dataEntries, label: "Units Sold")
+            let chartDataSet = LineChartDataSet(values: dataEntries, label: "\(goalInfo.goalList[selectaIndex!]["goal"]!)")
             myChartView.data = LineChartData(dataSet: chartDataSet)
             
             // X軸のラベルを設定
@@ -85,18 +82,28 @@ class myPageViewController: UIViewController{
             
             // x軸のラベルをボトムに表示
             myChartView.xAxis.labelPosition = .bottom
-            // グラフの色
-            chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
             // グラフの背景色
-            myChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+            myChartView.backgroundColor  = UIColor.init(red: 134, green: 231, blue: 255, alpha: 0)
+        
             // グラフの棒をニョキッとアニメーションさせる
-            myChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
-//            // 横に赤いボーダーラインを描く
-//            let ll = ChartLimitLine(limit: 10.0, label: "Target")
-//            myChartView.rightAxis.addLimitLine(ll)
-            // グラフのタイトル
-            myChartView.chartDescription?.text = "Cool Graph!"
+            myChartView.animate(xAxisDuration: 6.0, yAxisDuration: 2.0)
+        // グラフのタイトル
+//            myChartView.chartDescription?.text = "\(goalInfo.goalList[selectaIndex!]["goal"]!)"
+        ////グラフのUI設定
+        //グラフのグラデーション有効化
+        let gradientColors = [#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1).cgColor, #colorLiteral(red: 1, green: 0, blue: 0.09427946061, alpha: 1).withAlphaComponent(0.3).cgColor] as CFArray // Colors of the gradient
+        let colorLocations:[CGFloat] = [0.7, 0.4] // Positioning of the gradient
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
+         chartDataSet.mode = .cubicBezier //曲線にする
+         chartDataSet.drawFilledEnabled = true //グラフ下の部分塗りつぶし
+        chartDataSet.lineWidth = 3.0 //線の太さ
+        chartDataSet.colors = [#colorLiteral(red: 1, green: 0, blue: 0.09427946061, alpha: 1)] //Drawing graph
+        
+        chartDataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+
         }
+    
+    
     
     
     
@@ -149,20 +156,24 @@ class myPageViewController: UIViewController{
     
 
     }
+
+
  public class lineChartFormatter: NSObject, IAxisValueFormatter{
     
+    let aa  = myPageViewController()
+ 
     // x軸のラベル
     
-    var months: [String]! =
-        recordInfoGraph.recordList.map{ $0["dayRecord"] as! String}
-    
+    lazy var months: [String]! = recordInfoGraph.recordList.map{ $0["dayRecord"] as! String}
     // デリゲート。TableViewのcellForRowAtで、indexで渡されたセルをレンダリングするのに似てる。
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         // 0 -> Jan, 1 -> Feb...
         return months[Int(value)]
     }
-}
     
+
+
+}
     
 
     
@@ -205,5 +216,9 @@ extension myPageViewController{
         
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
+        
+     
+        
+     
     }
 }

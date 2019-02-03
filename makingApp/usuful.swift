@@ -7,46 +7,32 @@
 
 
 import UIKit
-//
-//
-//////func 作りたい時はどうすればいいのか
-//    func backGroundColor() {
-//        //グラデーションをつける
-//        let gradientLayer = CAGradientLayer()
-////        gradientLayer.frame = view.bounds
-//
-//        //グラデーションさせるカラーの設定
-//        //今回は、徐々に色を濃くしていく
-//        let color1 = UIColor(red: 1.0 , green: 1.0, blue: 1.0, alpha: 1).cgColor     //白
-//        let color2 = UIColor(red: 256/256.0, green: 82/256.0, blue: 0/256.0, alpha: 1).cgColor   //水色
-//
-//        //CAGradientLayerにグラデーションさせるカラーをセット
-//        gradientLayer.colors = [color1, color2]
-//
-//        //グラデーションの開始地点・終了地点の設定
-//        //上が白で下が水色
-//        //    gradientLayer.startPoint = CGPoint.init(x: 0.5, y: 0)
-//        //    gradientLayer.endPoint = CGPoint.init(x: 0.5 , y:1 )
-//        //上が赤で下が白
-//        //        gradientLayer.endPoint = CGPoint.init(x: 0.5, y: 0)
-//        //        gradientLayer.startPoint = CGPoint.init(x: 0.5 , y:1 )
-//
-//        //左が白で右が水色
-//        gradientLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
-//        gradientLayer.endPoint = CGPoint.init(x: 1 , y:0.5)
-//
-//        //左上が白で右下が水色
-//        //    gradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
-//        //    gradientLayer.endPoint = CGPoint.init(x: 1 , y:1)
-//
-//        //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
-////        view.layer.insertSublayer(gradientLayer,at:0)
-//}
-//func relationship(year: String, month: String, day: String) -> String {
-//
-//
-//
-//    return "\(year)年\(month)月\(day)日"
-//}
-//
+import Foundation
 
+//閉じるボタンの付いたキーボード
+class KeyBoard: UITextField{
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit(){
+        let tools = UIToolbar()
+        tools.frame = CGRect(x: 0, y: 0, width: frame.width, height: 40)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(KeyBoard.closeButtonTapped))
+        tools.items = [spacer, closeButton]
+        self.inputAccessoryView = tools
+    }
+    
+    @objc func closeButtonTapped(){
+        self.endEditing(true)
+        self.resignFirstResponder()
+    }
+}

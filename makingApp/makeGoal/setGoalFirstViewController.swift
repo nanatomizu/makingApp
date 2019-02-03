@@ -41,11 +41,13 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
     
     @IBOutlet weak var detailLabel: UILabel!
     
-    @IBOutlet weak var goalTextField: UITextField!
+    @IBOutlet weak var goalTextField:UITextField!
     @IBOutlet weak var dateSelecter: UITextField!
     @IBOutlet weak var goalDetailTextView: UITextView!
     
     @IBOutlet weak var goNextBtn: UIButton!
+    
+   
     
     
     override func viewDidLoad() {
@@ -59,6 +61,18 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         dateSelecter.delegate = self
         goalDetailTextView.delegate = self
         
+        //goalDetailTextViewの話
+        // 枠のカラー
+        goalDetailTextView.layer.borderColor = UIColor.gray.cgColor
+        
+        // 枠の幅
+        goalDetailTextView.layer.borderWidth = 1.0
+        
+        // 枠を角丸にする場合
+        goalDetailTextView.layer.cornerRadius = 10.0
+        goalDetailTextView.layer.masksToBounds = true
+        
+     ////DataPicker周りのこと
         //日付フィールドの設定
         dateFormat.dateFormat = "yyyy年MM月dd日"
         dateSelecter.text = dateFormat.string(from: nowDate as Date)
@@ -89,21 +103,11 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         pickerToolBar.items = [spaceBarBtn,toolBarBtn]
         dateSelecter.inputAccessoryView = pickerToolBar
         
-        //goalDetailTextViewの話
-        // 枠のカラー
-        goalDetailTextView.layer.borderColor = UIColor.gray.cgColor
-        
-        // 枠の幅
-        goalDetailTextView.layer.borderWidth = 1.0
-        
-        // 枠を角丸にする場合
-        goalDetailTextView.layer.cornerRadius = 10.0
-        goalDetailTextView.layer.masksToBounds = true
-        
+      
         //////////UIToolBarの設定////////////////////
         //キードードを閉じるボタンを作るためにツールバーを生成
         let toolBar = UIToolbar()
-        
+       
         //toolBarのサイズを設定
         toolBar.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
         
@@ -112,7 +116,7 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         
         //Doneボタンを右に配置するためのスペース
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-        
+       
         //完了ボタン
         let doneButton      = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(setGoalFirstViewController.doneButton))
         //        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(setGoalFirstViewController.doneButton))
@@ -126,10 +130,15 @@ class setGoalFirstViewController: UIViewController,UITextFieldDelegate,UITextVie
         
         //goalDetailTextViewにツールバーを設定
         goalDetailTextView.inputAccessoryView = toolBar
+        //goalTextFieldに
+//        goalTextField.inputAccessoryView = toolBar
+        
+        
+    
         
 //
         
-       /////////キーボードにtextViewが隠れないようにするための処理////////////
+       /////////キーボードにtextViewが隠れないようにするための処理///////////
         // UIScrollViewインスタンス生成
         scrollView = UIScrollView()
         

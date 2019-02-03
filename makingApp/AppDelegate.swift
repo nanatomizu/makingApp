@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    //ユーザー通知のため
+////    //ユーザー通知のため
     let center = UNUserNotificationCenter.current()
     
         //アプリが起動された時に発動するメソッド
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
             
-            goalNotification.readAll()
+         
             center.requestAuthorization(options: [.alert,.sound,.badge]){
                                    (granted, _)in
                 if granted {
@@ -53,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
          goalNotification.readAll()
 
+        //古い通知があれば削除する
+        center.removeAllPendingNotificationRequests()
 //        TODO:目標ごとに通知を設定
         
         for i in goalNotification.goalList{

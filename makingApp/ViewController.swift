@@ -44,12 +44,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        
-//        
-//       print(goalInfo.goalList[0]["goal"] as! String)
-//    print(goalInfo.goalList[0]["notificationWord"] as! String)
-//        
+        goalInfo.readAll()
+        recordInfos.readAll()
+        goalTableView.reloadData()
+        dailyTableView.reloadData()
+        timeTableView.reloadData()
         
      
         let df = DateFormatter()
@@ -85,11 +84,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //        let goalInfo = GoalInfo()
         goalInfo.readAll()
         recordInfos.readAll()
-        
-       
+        goalTableView.reloadData()
+        dailyTableView.reloadData()
+       timeTableView.reloadData()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        goalInfo.readAll()
+        recordInfos.readAll()
+        goalTableView.reloadData()
+        dailyTableView.reloadData()
+        timeTableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //if文で表す　funcの中へすじ上記の変数が全て送られてくるためにTagで区別

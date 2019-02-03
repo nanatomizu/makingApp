@@ -15,25 +15,29 @@
 import UIKit
 import RealmSwift
 
-
+let favs = FavoritesQuotation()
 
 class quotationViewController: UIViewController {
- 
-
-     let realm = try! Realm()
     
+     let realm = try! Realm()
+     var randomNumber:Int!
+   
     var quotations = ["壁というのはできる人にしかやってこない。超えられる可能性がある人にしかやってこない。だから、壁がある時はチャンスだと思っている。                                         - イチロー -","努力せずに何かできるようになる人のことを 「天才」というのなら、僕はそうじゃない。努力した結果、何かができるようになる人のことを「天才」というのなら、僕はそうだと思う。人が僕のことを、努力もせずに打てるんだと思うなら、それは間違いです。　　　　      　  　                      　　　　　　　　　　　　　　　　　　　　　　　　　                                イチロー  ","振り向くな、振り向くな、後ろには夢がない　　　　　　　　　　坂本龍馬","一番難しいのは行動しようと腹をくくること。あとはただ粘り強さの問題だ。   アメリア・イアハート"
     ]
+   
 
+   
     
     @IBOutlet weak var quoteTextView: UITextView!
     
   
-   
+    @IBOutlet weak var favBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
      showWords()
        
         backGroundColor()
@@ -42,42 +46,71 @@ class quotationViewController: UIViewController {
     }
     
    
+    @IBAction func gotoFavs(_ sender: UIButton) {
+        print("fav.favRealmList",fav.favRealmList,"ページ遷移します")
+    }
     
     
     @IBAction func tapBtnquote(_ sender: Any) {
-       
+        quoteTextView.alpha = 0
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseIn], animations: {
+            self.quoteTextView.alpha = 1.0
+        }, completion: nil)
       showWords()
     }
     
     func showWords(){
        // 占いの結果をランダムに選ぶための数字を作成
-    let randomNumber = Int(arc4random()) %  quotations.count //.countはomikujiResultの要素数
-         print(randomNumber)
+       
+        randomNumber = Int(arc4random()) %  quotations.count //.countはomikujiResultの要素数
+//         print(randomNumber)
         
         quoteTextView.text = quotations[randomNumber]
+        
     }
     //お気に入りボタン
+    
     @IBAction func favoriteBtn(_ sender: UIButton) {
-       
-        //DB書き込み処理
-        print("データ書き込み開始")
+//        favs.readAll()
+//        print("favs.favRealmList[0][quotes]",favs.favRealmList[0]["quotes"])
         
-        
-        
-        try! realm.write {
-            
-            //ゴールの各内容が書き込まれる。
-            let favoritesQuotation = FavoritesQuotation()
-          favoritesQuotation.favorites = quoteTextView.text
-            
-            realm.add(favoritesQuotation)
-            print("データ書き込み中")
-            print(favoritesQuotation)
+//        optionalだと取り出せないよ
+        favs.readByquote(saying: quoteTextView.text!,bool: true)
+//        print("quoteTextView.text",quoteTextView.text!)
+        print("favs.favRealmList",favs.favRealmList,"始まり")
+        if favs.favRealmList.count == 0  {
+            favAdd()
+            print("favs.favRealmList",favs.favRealmList)
+        }else{
+            updateFav()
+
+            print("favs.favRealmList",favs.favRealmList,"すでにお気に入り登録されているとき")
         }
-        
-        print("データ書き込み完了")
-        
-}
+        print("favs.favRealmList",favs.favRealmList)
+
+    }
+    func updateFav(){
+        do{
+            let realm = try! Realm()
+            // トランザクションを開始します。
+            var results = realm.objects(FavoritesQuotation.self)
+            results = results.filter("quotes = '\(quoteTextView.text!)' ")
+            print("aaaaresults",results)
+           
+          
+                try! realm.write { () -> Void in
+                for i in 0...results.count - 1{
+                    
+                results[i].favorites = false
+                
+                print("resultsaaaaaaaaaa",results)
+                }
+            }
+            }catch{
+            print("失敗したよ")
+        }
+    }
+
     
     //共有ボタン
     @IBAction func shareSnsBtn(_ sender: UIButton) {
@@ -100,7 +133,8 @@ class quotationViewController: UIViewController {
     
     
     @IBAction func deleteQuote(_ sender: Any) {
-        fav.deleteAll()
+        favs.deleteAll()
+        
     }
     
    
@@ -139,5 +173,25 @@ extension quotationViewController{
         //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
         self.view.layer.insertSublayer(gradientLayer,at:0)
     }
+    func favAdd(){
+      //DB書き込み処理
+        print("名言データ書き込み中")
+        try! realm.write {
+            
+        let favoritesQuotation1 = FavoritesQuotation()
+           
+                favoritesQuotation1.quotes = quoteTextView.text
+            favoritesQuotation1.favorites = true
+            realm.add(favoritesQuotation1)
+           
+            print("書き込み中")
+            print(favoritesQuotation1)
+//             favs.readByquote(saying: quoteTextView.text!,bool: true)
+//            print("favs.favRealmList",favs.favRealmList)
+    }
 }
+
+}
+
+
 

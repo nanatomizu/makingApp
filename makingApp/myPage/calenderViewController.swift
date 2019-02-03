@@ -18,14 +18,17 @@ var screenHeight = UIScreen.main.bounds.size.height
 
 class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UITableViewDelegate,UITableViewDataSource{
     
-    
+   
     let dayLabel:UILabel = UILabel()
+    var sections = [String]() // セクション名を格納しておく
     
     @IBOutlet weak var calender: FSCalendar!
     
     var tableView :UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        //アニメーションを他のページから戻ってきてもできるようにしてます
+        tableView.alpha = 0
     }
     
     override func viewDidLoad() {
@@ -47,8 +50,8 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
           
             //tableViewサイズ
             tableView.frame.size = CGSize(width: 5 * screenWidth / 6
-            , height:screenHeight / 2 )
-            tableView.center = CGPoint(x: screenWidth / 2, y: 720 )
+            , height:screenHeight / 4 )
+            tableView.center = CGPoint(x: screenWidth / 2, y: 600 )
             
            
             
@@ -57,9 +60,14 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             return tableView
             
         }()
+        //tableViewスクロールさせない
+        tableView.isScrollEnabled = false
         //tableViewの背景色透明　cell間の線の削除
         tableView.backgroundColor = UIColor.clear
-        tableView.tableFooterView = UIView()
+//        tableView.layer.borderColor = UIColor.lightGray.cgColor
+//        tableView.layer.borderWidth = 1
+//        tableView.tableFooterView = UIView()
+        
         
         //labelの配置
         let dayLabel:UILabel = UILabel()
@@ -69,9 +77,10 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
 //        dayLabel.font = UIFont.systemFont(ofSize: 60.0)
         dayLabel.textColor = .black
         dayLabel.layer.borderColor = UIColor.blue.cgColor
-        
-        view.addSubview(dayLabel)
       
+    
+//        view.addSubview(dayLabel)
+        
         
     }
     
@@ -180,12 +189,12 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let day = tmpDate.component(.day, from: date)
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
-        dayLabel.text = "\(m)月\(d)日"
+        
         
         //realmで登録しているキーと呼び出すときの型と書き方が一致していないとデータを取得できないよ
         let da = "\(year)年\(m)月\(d)日"
         
-        
+        dayLabel.text = "\(m)/\(d)"
 //        print("ここから")
 //        print(m)
 //        print(d)
@@ -198,20 +207,15 @@ class calenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         
         recordInfo.readByDay(da:da)
         print("recordInfo.recordList:::::::::\(recordInfo.recordList)")
-//                        print("これは")
-//                        print("recordInfo:\(recordInfo)")
-//            print("recordInfo.recordList:\(recordInfo.recordList)")
-//            print("results:\(results)")
-//            print("ev:\(ev)")
-//            print("ev.recordGoal:\(ev.recordGoal)")
-//            print("ev.recordGoal:\(ev.recordGoal)")
-//
-//                        print("これ")
-//
 
+        //tableVIewの表示の際にアニメーション追加してます
+        tableView.alpha = 0
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn], animations: {
+            self.tableView.alpha = 1.0
+        }, completion: nil)
+        
                 view.addSubview(tableView)
         print("recordInfo.recordGoal:\(recordInfo.recordGoal)")
-        
         tableView.reloadData()
 
           }
@@ -235,7 +239,7 @@ extension calenderViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
         cell.backgroundColor = UIColor.clear
-    
+      
         
         cell.textLabel?.text = recordInfo.recordList[indexPath.row]["recordGoal"] as! String
        print(recordInfo.recordList[indexPath.row]["recordGoal"] as! String)
@@ -262,6 +266,39 @@ extension calenderViewController {
         print("Selected! \(recordInfo.recordList[indexPath.row]["recordGoal"]!)")
         
     }
+    // Section数
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    // Sectioのタイトル
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
+       
+        return dayLabel.text
+    }
+//    TODO:セクションの色を変えよう
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView:UIView = UIView()
+//        let label:UILabel = UILabel()
+         let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 30))
+        headerView.backgroundColor = UIColor.white
+      
+        label.textColor = UIColor.lightGray
+        label.text = dayLabel.text
+        label.textAlignment = .center
+        headerView.addSubview(label)
+        return headerView
+    }
+   
+    
+//
+    // Section Header Height
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // ヘッダーViewの高さを返す
+        return 30
+    }
+
     
    
 }
