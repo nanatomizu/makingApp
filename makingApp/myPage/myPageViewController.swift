@@ -21,11 +21,13 @@ let goalInfoGraph  = GoalFirstInfo()
 
 class myPageViewController: UIViewController{
     
-    //左が達成度の値、右が日付
+    //達成度の値
     var myDictionary:[Double] = []
     
-    
     var selectaIndex:Int?
+    
+    var dataDay:[String] = []
+    
     
     @IBOutlet weak var myChartView: LineChartView!
     
@@ -56,12 +58,13 @@ class myPageViewController: UIViewController{
            print("myDictionary",myDictionary)
         
       
-
+   
     
     
          backGroundColor()
  
     }
+    
     
     func setChart(y: [Double]) {
             // プロットデータ(y軸)を保持する配列
@@ -74,19 +77,34 @@ class myPageViewController: UIViewController{
             // グラフをUIViewにセット
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "\(goalInfo.goalList[selectaIndex!]["goal"]!)")
             myChartView.data = LineChartData(dataSet: chartDataSet)
-            
+        
+        //y軸
+         let yaxis = YAxis()
+        
             // X軸のラベルを設定
-            let xaxis = XAxis()
-        xaxis.valueFormatter = lineChartFormatter()
-            myChartView.xAxis.valueFormatter = xaxis.valueFormatter
+        recordInfoGraph.readGaph(goal: goalInfo.goalList[selectaIndex!]["goal"] as! String )
+//        var moji = "赤い花"
+//        if let range = moji.range(of: "赤い") {
+//            moji.replaceSubrange(range, with: "青い")
+//            print(moji)     // 青い花
+//        }
+        for i in recordInfoGraph.recordList{
             
+            dataDay.append(i["dayRecord"] as! String)
+        }
+        let xaxis = myChartView.xAxis
+        xaxis.valueFormatter = IndexAxisValueFormatter(values:dataDay)
+            myChartView.xAxis.valueFormatter = xaxis.valueFormatter
+//        xaxis.axisMinimum = -0.5 // axisMinimumで設定するとspaceがきかないようなので0.5でスペースをあけてみる
+//        xaxis.axisMaximum = 2.5
+        xaxis.labelCount = Int(1)
             // x軸のラベルをボトムに表示
             myChartView.xAxis.labelPosition = .bottom
             // グラフの背景色
             myChartView.backgroundColor  = UIColor.init(red: 134, green: 231, blue: 255, alpha: 0)
         
             // グラフの棒をニョキッとアニメーションさせる
-            myChartView.animate(xAxisDuration: 6.0, yAxisDuration: 2.0)
+            myChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         // グラフのタイトル
 //            myChartView.chartDescription?.text = "\(goalInfo.goalList[selectaIndex!]["goal"]!)"
         ////グラフのUI設定
@@ -103,7 +121,18 @@ class myPageViewController: UIViewController{
 
         }
     
-    
+//    func aaaa()->[String]{
+//        var months: [String]! = []
+//        recordInfoGraph.readGaph(goal:goalInfo.goalList[selectaIndex!]["goal"] as! String  )
+//        print("recordInfoGraph.recordList",recordInfoGraph.recordList,"何が入っているのかな")
+//        for i in recordInfoGraph.recordList{
+//
+//            LineChartData(months).append(i["dayRecord"] as! String)
+//        }
+//
+//        return LineChartData(months)
+//
+//    }
     
     
     
@@ -158,27 +187,33 @@ class myPageViewController: UIViewController{
     }
 
 
- public class lineChartFormatter: NSObject, IAxisValueFormatter{
-    
-    let aa  = myPageViewController()
- 
-    // x軸のラベル
-    
-    lazy var months: [String]! = recordInfoGraph.recordList.map{ $0["dayRecord"] as! String}
-    // デリゲート。TableViewのcellForRowAtで、indexで渡されたセルをレンダリングするのに似てる。
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        // 0 -> Jan, 1 -> Feb...
-        return months[Int(value)]
-    }
-    
+// public class lineChartFormatter: NSObject, IAxisValueFormatter{
+//
+//  // x軸のラベル
+//  var months: [String?] = ["あ","い","う","え","お","か","き","く","け",]
+//
+//
+//    // デリゲート。TableViewのcellForRowAtで、indexで渡さseれたセルをレンダリングするのに似てる。
+//    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+//        // 0 -> Jan, 1 -> Feb...
+//
+//        return months[Int(value)]!
+//
+//    }
+//}
 
 
-}
-    
 
     
    
-    
+//func aaaa(goal:String)->[String]{
+//    var months: [String]! = []
+//    recordInfoGraph.readAll()
+//    for i in recordInfoGraph.recordList{
+//        months.append(i["todaydayRecord"] as! String)
+//    }
+//    return months
+//}
 
 
 
